@@ -1,0 +1,117 @@
+
+
+.fullparameter {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    display: none;
+    padding: 0 0 0 55px;
+    width: 630px;
+    margin: 0 auto
+}
+
+.fullparameter.display {
+    display: block
+}
+
+.fullparameter ul {
+    padding: 10px 30px 10px 30px;
+    width: 450px
+}
+
+.fullparameter .scroll {
+    height: 100vh;
+    width: auto;
+    padding: 0 30px 0 30px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #fff
+}
+
+
+
+.parameterfull {
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.parameterfull li {
+    display: table;
+    *display: block;
+    width: 100%;
+    border-bottom: 1px solid #dadada;
+    background-color: #0d5b80;
+}
+
+
+
+.parameterfull li span {
+    display: table-cell;
+    *float: left;
+    width: 35%;
+    vertical-align: top;
+    padding: 6px 5px;
+    font-size: 13px;
+    color: white;
+    font-weight: 600
+}
+
+.parameterfull li span div.ph {
+    padding: 0
+}
+
+.parameterfull li div {
+    display: table-cell;
+    *float: left;
+    width: auto;
+    vertical-align: top;
+    padding: 6px 5px;
+    font-size: 13px;
+    color: #666
+}
+
+.parameterfull li div a {
+    color: #288ad6
+}
+
+.parameterfull li.line div label {
+    display: block;
+    font-size: 13px;
+    color: white;
+    font-weight: normal;
+    background: none;
+    padding: unset
+}
+
+
+.parameterfull li.line div a {
+    display: block
+}
+
+
+.fixparameter {
+    display: block;
+    overflow: hidden;
+    background: rgba(0, 0, 0, .75);
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 99;
+    text-indent: 999999em
+}
+
+.icondetail-closepara {
+    background-image: url(https://cdn.tgdd.vn/v2015/Content/desktop/images/icondetail@1x.png);
+    background-position: -160px -60px;
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
+    display: block
+}
+

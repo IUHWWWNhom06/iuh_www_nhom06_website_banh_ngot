@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/decorators">
+
+	<decorator name="danhsach-dienthoai" page="user1.jsp">
+		<pattern>/dienthoai/danhsach</pattern>
+	</decorator>
+
+	<decorator name="danhmuc" page="user1.jsp">
+		<pattern>/dienthoai/danhmuc</pattern>
+	</decorator>
+	
+	<decorator name="timtaikhoan" page="user1.jsp">
+		<pattern>/user/formTimTenDangNhap</pattern>
+	</decorator>
+	
+	<decorator name="guiemaildoimk" page="user1.jsp">
+		<pattern>/user/guiEmail</pattern>
+	</decorator>
+	
+	<decorator name="formCapNhatMatKhau" page="user1.jsp">
+		<pattern>/user/formCapNhatMatKhau</pattern>
+	</decorator>
+	
+	<decorator name="capNhatMatKhau" page="user1.jsp">
+		<pattern>/user/capNhatMatKhau</pattern>
+	</decorator>
+	
+	<decorator name="search" page="user1.jsp">
+		<pattern>/dienthoai/search</pattern>
+	</decorator>
+
+	<decorator name="chitietdienthoai" page="user1.jsp">
+		<pattern>/dienthoai/chitietdienthoai</pattern>
+	</decorator>
+	<decorator name="user-giohang" page="user1.jsp">
+		<pattern>/user/gioHang</pattern>
+	</decorator>
+	<decorator name="user-dangnhap" page="user1.jsp">
+		<pattern>/user/formDangNhap</pattern>
+	</decorator>
+	<decorator name="user-formdangky" page="user1.jsp">
+		<pattern>/user/formDangKy</pattern>
+	</decorator>
+	<decorator name="user-formdangky" page="user1.jsp">
+		<pattern>/user/dangky</pattern>
+	</decorator>
+	<decorator name="user-showformnguoinhan" page="user1.jsp">
+		<pattern>/user/showFormNguoiNhan</pattern>
+	</decorator>
+	<decorator name="user-thanhtoan" page="user1.jsp">
+		<pattern>/user/thanhtoan</pattern>
+	</decorator>
+	<decorator name="admin-trangchu" page="admin.jsp">
+		<pattern>/admin/</pattern>
+	</decorator>
+
+	<decorator name="admin" page="admin.jsp">
+		<pattern>/admin/trang-chu</pattern>
+	</decorator>
+
+
+	<decorator name="admin-list-user" page="admin.jsp">
+		<pattern>/admin/user/list</pattern>
+	</decorator>
+	
+	<decorator name="admin-list-user-search" page="admin.jsp">
+		<pattern>/admin/user/search</pattern>
+	</decorator>
+
+	<decorator name="admin-list-brand" page="admin.jsp">
+		<pattern>/admin/brand/list</pattern>
+	</decorator>
+	
+	<decorator name="admin-list-comment" page="admin.jsp">
+		<pattern>/admin/comment/list</pattern>
+	</decorator>
+
+	<decorator name="admin-showformadd-brand" page="admin.jsp">
+		<pattern>/admin/brand/showFormAdd</pattern>
+	</decorator>
+	
+	<decorator name="admin-save-brand" page="admin.jsp">
+		<pattern>/admin/brand/save</pattern>
+	</decorator>
+
+	<decorator name="admin-showformedit-brand" page="admin.jsp">
+		<pattern>/admin/brand/showFormEdit</pattern>
+	</decorator>
+
+	<decorator name="admin-showformedit-user" page="admin.jsp">
+		<pattern>/admin/user/showFormEdit</pattern>
+	</decorator>
+
+	<decorator name="admin-showformeadd-user" page="admin.jsp">
+		<pattern>/admin/user/showFormAdd</pattern>
+	</decorator>
+	<decorator name="admin-showformeadd-user" page="admin.jsp">
+		<pattern>/admin/user/save</pattern>
+	</decorator>
+
+	<decorator name="admin-delete-user" page="admin.jsp">
+		<pattern>/admin/user/delete</pattern>
+	</decorator>
+
+	<decorator name="admin-list-admin" page="admin.jsp">
+		<pattern>/admin/admin/list</pattern>
+	</decorator>
+
+	<decorator name="admin-showformeadd-admin" page="admin.jsp">
+		<pattern>/admin/admin/showFormEdit</pattern>
+	</decorator>
+
+	<decorator name="admin-order-list" page="admin.jsp">
+		<pattern>/admin/order/list</pattern>
+	</decorator>
+	<decorator name="admin-order-search" page="admin.jsp">
+		<pattern>/admin/order/search</pattern>
+	</decorator>
+
+	<decorator name="admin-cate-list" page="admin.jsp">
+		<pattern>/admin/cate/list</pattern>
+	</decorator>
+
+	<decorator name="admin-showformeadd-cate" page="admin.jsp">
+		<pattern>/admin/cate/showFormAdd</pattern>
+	</decorator>
+
+	<decorator name="admin-showformedit-cate" page="admin.jsp">
+		<pattern>/admin/cate/showFormEdit</pattern>
+	</decorator>
+
+	<decorator name="admin-delete-cate" page="admin.jsp">
+		<pattern>/admin/cate/delete</pattern>
+	</decorator>
+	
+	<decorator name="admin-save-cate" page="admin.jsp">
+		<pattern>/admin/cate/save</pattern>
+	</decorator>
+
+	<decorator name="admin-product-list" page="admin.jsp">
+		<pattern>/admin/product/list</pattern>
+	</decorator>
+	
+	<decorator name="admin-product-save" page="admin.jsp">
+		<pattern>/admin/product/save</pattern>
+	</decorator>
+
+	<decorator name="admin-product-detail" page="admin.jsp">
+		<pattern>/admin/product/product-detail</pattern>
+	</decorator>
+
+	<decorator name="admin-delete-product" page="admin.jsp">
+		<pattern>/admin/product/delete</pattern>
+	</decorator>
+
+	<decorator name="admin-showformeadd-product" page="admin.jsp">
+		<pattern>/admin/product/showFormAdd</pattern>
+	</decorator>
+
+	<decorator name="admin-showformedit-product" page="admin.jsp">
+		<pattern>/admin/product/showFormEdit</pattern>
+	</decorator>
+
+</decorators>
