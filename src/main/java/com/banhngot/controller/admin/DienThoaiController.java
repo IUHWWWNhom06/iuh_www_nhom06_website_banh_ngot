@@ -24,11 +24,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.banhngot.entity.DanhMuc;
-import com.banhngot.entity.DienThoai;
+import com.banhngot.entity.Product;
 import com.banhngot.entity.ThongSo;
 import com.banhngot.entity.ThuongHieu;
 import com.banhngot.service.DanhMucService;
-import com.banhngot.service.DienThoaiService;
+import com.banhngot.service.ProductService;
 import com.banhngot.service.ThongSoService;
 import com.banhngot.service.ThuongHieuService;
 
@@ -37,7 +37,7 @@ import com.banhngot.service.ThuongHieuService;
 public class DienThoaiController {
 	private static final String UPLOA_DIRECTORY = "resources/user/images/SanPham";
 	@Autowired
-	private DienThoaiService dienThoaiService;
+	private ProductService dienThoaiService;
 
 	@Autowired
 	private DanhMucService danhMucService;
@@ -50,7 +50,7 @@ public class DienThoaiController {
 
 	@GetMapping("/product/list")
 	public String listProduct(Model theModel, @RequestParam(value = "page", defaultValue = "1") int page) {
-		List<DienThoai> productList = dienThoaiService.getListDienThoai();
+		List<Product> productList = dienThoaiService.getListDienThoai();
 		theModel.addAttribute("page", page);
 		theModel.addAttribute("productList", dienThoaiService.getListDienThoaiTheoPage(page, 7, productList));
 		theModel.addAttribute("total", productList.size());
@@ -67,7 +67,7 @@ public class DienThoaiController {
 
 	@GetMapping("/product/showFormEdit")
 	private String showFormEditProduct(@RequestParam("productId") int id, Model theModel, HttpSession session) {
-		DienThoai product = dienThoaiService.getDienThoai(id);
+		Product product = dienThoaiService.getDienThoai(id);
 		List<DanhMuc> cates = danhMucService.getListDanhMuc();
 		int cate_id = product.getDanhMuc().getId();
 
@@ -81,7 +81,7 @@ public class DienThoaiController {
 
 	@GetMapping("/product/showFormAdd")
 	private String showFormAddProduct(Model theModel) {
-		DienThoai product = new DienThoai();
+		Product product = new Product();
 		List<DanhMuc> cates = danhMucService.getListDanhMuc();
 		theModel.addAttribute("cates", cates);
 		theModel.addAttribute("product", product);
@@ -89,7 +89,7 @@ public class DienThoaiController {
 	}
 
 	@PostMapping("/product/save")
-	private String editAdmin(Model theModel, @ModelAttribute("product") @Validated DienThoai product,
+	private String editAdmin(Model theModel, @ModelAttribute("product") @Validated Product product,
 			BindingResult result, @RequestParam("cateId") int id, @RequestParam("detail_id") String detail_id,
 			@RequestParam() CommonsMultipartFile[] files, HttpServletRequest request, HttpSession session)
 			throws Exception {
@@ -121,11 +121,11 @@ public class DienThoaiController {
 				session.removeValue("photos");
 			}
 			ThongSo ts = thongSoService.getThongSo(Integer.parseInt(detail_id));
-			product.setThongSo(ts);
+//			product.setThongSo(ts);
 			DanhMuc cate = danhMucService.getDanhMuc(id);
 			product.setDanhMuc(cate);
 			ThuongHieu thuongHieu = thuongHieuService.getTheoTen(cate.getTenDanhMuc().trim());
-			product.setThuongHieu(thuongHieu);
+//			product.setThuongHieu(thuongHieu);
 			dienThoaiService.saveDienThoai(product);
 			return "redirect:/admin/product/list";
 		}

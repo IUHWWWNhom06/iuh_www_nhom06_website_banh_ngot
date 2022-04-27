@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.banhngot.entity.DienThoaiGioHang;
-import com.banhngot.service.DienThoaiService;
+import com.banhngot.service.ProductService;
 
 @Controller(value = "GioHangControllerOfUser")
 @RequestMapping("/user")
 public class GioHangController {
 	@Autowired
-	private DienThoaiService dienThoaiService;
+	private ProductService dienThoaiService;
 
 	@GetMapping(value = "/gioHang")
 	public String showGioHang(HttpSession session, Model model, Principal principal) {
@@ -95,7 +95,7 @@ public class GioHangController {
 			thue++;
 			tamTinh += dienThoaiGioHang.getDienThoai().getGiaDT() * dienThoaiGioHang.getSoLuong();
 			giamGia += (tamTinh * dienThoaiGioHang.getDienThoai().getGiamGia()) / 100;
-			thue += (tamTinh * dienThoaiGioHang.getDienThoai().getThue()) / 100;
+//			thue += (tamTinh * dienThoaiGioHang.getDienThoai().getThue()) / 100;
 			session.setAttribute("tamtinh", tamTinh);
 			session.setAttribute("giamgia", giamGia);
 			session.setAttribute("tongtien", tamTinh - giamGia + thue);

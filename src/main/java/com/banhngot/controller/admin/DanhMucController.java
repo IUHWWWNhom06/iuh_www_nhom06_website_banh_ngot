@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.banhngot.entity.DanhMuc;
-import com.banhngot.entity.DienThoai;
+import com.banhngot.entity.Product;
 import com.banhngot.service.DanhMucService;
-import com.banhngot.service.DienThoaiService;
+import com.banhngot.service.ProductService;
 
 @Controller(value = "danhMucControllerOfAdmin")
 @RequestMapping("/admin")
@@ -25,12 +25,12 @@ public class DanhMucController {
 	private DanhMucService danhMucService;
 
 	@Autowired
-	private DienThoaiService dienThoaiService;
+	private ProductService dienThoaiService;
 
 	@GetMapping("/cate/list")
 	private String getListDanhMuc(Model thModel) {
 		List<DanhMuc> cates = danhMucService.getListDanhMuc();
-		List<DienThoai> dts = dienThoaiService.getListDienThoai();
+		List<Product> dts = dienThoaiService.getListDienThoai();
 		thModel.addAttribute("cates", cates);
 		thModel.addAttribute("dts", dts);
 		return "admin/cate";

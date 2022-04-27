@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.banhngot.dao.ThongKeDao;
-import com.banhngot.entity.DienThoai;
+import com.banhngot.entity.Product;
 
 @Repository
 public class ThongKeDaoImpl implements ThongKeDao {
@@ -54,7 +54,7 @@ public class ThongKeDaoImpl implements ThongKeDao {
 
 	@Transactional
 	@Override
-	public List<DienThoai> getListDienThoaiBanChay() {
+	public List<Product> getListDienThoaiBanChay() {
 		Session currentSession = sessionFactory.getCurrentSession();
 		String sql = "select  sum(soLuong) as sum, dt.tenDT, dt.giaDT, ts.boNho\r\n"
 				+ "from CHITIETHOADON ct \r\n"
@@ -64,7 +64,7 @@ public class ThongKeDaoImpl implements ThongKeDao {
 				+ "order by sum desc";
 		
 		@SuppressWarnings("unchecked")
-		List<DienThoai> listDT=currentSession.createNativeQuery(sql).getResultList();
+		List<Product> listDT=currentSession.createNativeQuery(sql).getResultList();
 		return listDT;	
 	}
 

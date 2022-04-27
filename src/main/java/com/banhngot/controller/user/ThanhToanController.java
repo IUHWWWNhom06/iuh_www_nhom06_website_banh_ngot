@@ -28,13 +28,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.banhngot.entity.ChiTietHoaDon;
-import com.banhngot.entity.DienThoai;
+import com.banhngot.entity.Product;
 import com.banhngot.entity.DienThoaiGioHang;
 import com.banhngot.entity.HoaDon;
 import com.banhngot.entity.NguoiDung;
 import com.banhngot.entity.PhuongThucThanhToan;
 import com.banhngot.service.ChiTietHoaDonService;
-import com.banhngot.service.DienThoaiService;
+import com.banhngot.service.ProductService;
 import com.banhngot.service.HoaDonService;
 import com.banhngot.service.NguoiDungService;
 
@@ -51,7 +51,7 @@ public class ThanhToanController {
 	ChiTietHoaDonService chiTietHoaDonService;
 
 	@Autowired
-	DienThoaiService dienThoaiService;
+	ProductService dienThoaiService;
 
 	@GetMapping(value = "/showFormNguoiNhan")
 	public String showFormNguoiNhan(Model model, HttpSession session) {
@@ -99,10 +99,10 @@ public class ThanhToanController {
 			List<DienThoaiGioHang> cart = (List<DienThoaiGioHang>) session.getAttribute("cart");
 			String noiDung="";
 			for (DienThoaiGioHang dt : cart) {	
-				noiDung+="Điện thoại: "+dt.getDienThoai().getTenDT()+" "+dt.getDienThoai().getThongSo().getBoNho()+" "+dt.getDienThoai().getThongSo().getRam()
-						+ ", màu: "+dt.getDienThoai().getMauSac()+" . "+"Đơn giá: "+format.format(dt.getDienThoai().getGiaDT())+" "+" Số lượng: "+dt.getSoLuong()+" \n";
+				noiDung+="Điện thoại: "+dt.getDienThoai().getTenDT()+" "
+						+ ", màu: " +" . "+"Đơn giá: "+format.format(dt.getDienThoai().getGiaDT())+" "+" Số lượng: "+dt.getSoLuong()+" \n";
 				chiTietHoaDonService.addChiTietHoaDon(dt.getDienThoai().getId(), nguoiNhan.getId(), dt.getSoLuong());
-				DienThoai capNhatSoLuong=dt.getDienThoai();
+				Product capNhatSoLuong=dt.getDienThoai();
 				int soLuong=0;
 				soLuong= dt.getDienThoai().getSoLuongTon()-dt.getSoLuong();
 				capNhatSoLuong.setSoLuongTon(soLuong);

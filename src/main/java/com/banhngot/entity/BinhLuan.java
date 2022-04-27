@@ -40,7 +40,7 @@ public class BinhLuan implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "id_DienThoai")
-	private DienThoai dienThoai;
+	private Product dienThoai;
 
 	public Integer getId() {
 		return id;
@@ -82,15 +82,15 @@ public class BinhLuan implements Serializable{
 		this.ngay = ngay;
 	}
 
-	public DienThoai getDienThoai() {
+	public Product getDienThoai() {
 		return dienThoai;
 	}
 
-	public void setDienThoai(DienThoai dienThoai) {
+	public void setDienThoai(Product dienThoai) {
 		this.dienThoai = dienThoai;
 	}
 
-	public BinhLuan(Integer id, String tenBinhLuan, String email, String noiDung, LocalDateTime ngay, DienThoai dienThoai) {
+	public BinhLuan(Integer id, String tenBinhLuan, String email, String noiDung, LocalDateTime ngay, Product dienThoai) {
 		super();
 		this.id = id;
 		this.tenBinhLuan = tenBinhLuan;

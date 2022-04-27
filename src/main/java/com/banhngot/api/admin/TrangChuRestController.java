@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.banhngot.entity.DienThoai;
+import com.banhngot.entity.Product;
 import com.banhngot.service.ThongKeService;
 
 @RestController(value = "trangChuRestControllerOfAdmin")
@@ -17,7 +17,7 @@ public class TrangChuRestController {
 	private ThongKeService thongKeService;
 
 	@GetMapping("/products")
-	public List<DienThoai> getDienThoaiBanChay() {
+	public List<Product> getDienThoaiBanChay() {
 		return thongKeService.getListDienThoaiBanChay();
 	}
 }

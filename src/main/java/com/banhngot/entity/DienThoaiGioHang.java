@@ -1,9 +1,9 @@
 package com.banhngot.entity;
 
 public class DienThoaiGioHang {
-	private DienThoai dienThoai = new DienThoai();
+	private Product dienThoai = new Product();
 	private int soLuong;
-	public DienThoaiGioHang(DienThoai dienThoai, int soLuong) {
+	public DienThoaiGioHang(Product dienThoai, int soLuong) {
 		super();
 		this.dienThoai = dienThoai;
 		this.soLuong = soLuong;
@@ -11,10 +11,10 @@ public class DienThoaiGioHang {
 	public DienThoaiGioHang() {
 		super();
 	}
-	public DienThoai getDienThoai() {
+	public Product getDienThoai() {
 		return dienThoai;
 	}
-	public void setDienThoai(DienThoai dienThoai) {
+	public void setDienThoai(Product dienThoai) {
 		this.dienThoai = dienThoai;
 	}
 	public int getSoLuong() {

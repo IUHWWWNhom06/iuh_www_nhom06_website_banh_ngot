@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.banhngot.dao.ThongKeDao;
-import com.banhngot.entity.DienThoai;
+import com.banhngot.entity.Product;
 import com.banhngot.service.ThongKeService;
 
 @Service
@@ -38,7 +38,7 @@ public class ThongKeServiceImpl implements ThongKeService {
 
 	@Transactional
 	@Override
-	public List<DienThoai> getListDienThoaiBanChay() {
+	public List<Product> getListDienThoaiBanChay() {
 		// TODO Auto-generated method stub
 		return thongKeDao.getListDienThoaiBanChay();
 	}

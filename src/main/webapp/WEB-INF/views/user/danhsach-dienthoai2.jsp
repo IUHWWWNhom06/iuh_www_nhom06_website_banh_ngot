@@ -17,6 +17,9 @@
 	<c:param name="search" value="${search}" />
 	<c:param name="memory" value="${memory}" />
 </c:url>
+
+<!--
+
 <c:url var="linkbanchay" value="/dienthoai/danhsach">
 	<c:param name="sort" value="banchay" />
 	<c:param name="search" value="${search}" />
@@ -55,7 +58,7 @@
 <c:url var="memory6" value="/dienthoai/danhsach">
 	<c:param name="sort" value="${sort }" />
 	<c:param name="memory" value="512GB" />
-	<c:param name="search" value="${search}" />
+	<c:param name="search" value="${search}" /> -->
 
 	
 </c:url>
@@ -66,7 +69,7 @@
 				<div class="col-2">
 					<nav class="category">
 						<h3 class="category__heading">
-							<i class="category__heading-icon fas fa-list"></i> Danh Mục
+							<i class="category__heading-icon fas fa-list"></i> Danh Mụcsss
 						</h3>
 						<ul class="category-list">
 							<c:forEach var="dm" items="${dms}">
@@ -75,7 +78,7 @@
 									method="get">
 									<input type="hidden" value="${sort}" name="sort" />
 									<input type="hidden" value="${dm.tenDanhMuc}" name="search" />
-									<input type="hidden" value="${memory}" name="memory" />
+								<!--	<input type="hidden" value="${memory}" name="memory" /> -->
 									<li class="category-item">
 										<div class="list-group">
 											<button type="submit"
@@ -138,6 +141,7 @@
 									</ul>
 								</div>
 								<div class="select-input">
+								<!--
 									<span class="select-input-price"> <c:if
 											test="${param.memory =='16GB'}">16GB</c:if> <c:if
 											test="${param.memory =='32GB'}">32GB</c:if> <c:if
@@ -160,7 +164,7 @@
 											class="select-input-link">256GB</a></li>
 										<li class="select-input-item"><a href="${memory6}"
 											class="select-input-link">512GB</a></li>
-									</ul>
+									</ul> -->
 								</div>
 							</div>
 						</div>
@@ -176,7 +180,7 @@
 										<div class="home-product-item-img"
 											style="background-image: url(${resources}/user/images/SanPham/${dt.anhURL}); width: 90%;"></div>
 										<h4 class="home-product-item__name">${dt.tenDT}
-											(${dt.thongSo.boNho})</h4> <c:if test="${dt.giamGia>0}">
+											</h4> <c:if test="${dt.giamGia>0}">
 											<div class="home-product-item__price">
 												<span class="home-product-item__price-old"><fmt:formatNumber
 														type="number" pattern="#,###,###.##" value="${dt.giaDT}" />
@@ -192,11 +196,7 @@
 													đ </span>
 											</div>
 										</c:if>
-										<div class="home-product-item__origin">
-											${dt.thongSo.heDieuHanh } <span
-												class="home-product-item__name-o">
-												${dt.thuongHieu.xuatXu } </span>
-										</div>
+								
 										<div class="home-product-item__favorite">
 											<i class="fas fa-check"></i> <span>Yêu thích</span>
 										</div> <c:if test="${dt.giamGia>0}">
@@ -214,15 +214,7 @@
 						</div>
 						<br>
 						<div class="col-md-12">
-							<form
-								action="${pageContext.request.contextPath}/dienthoai/danhsach"
-								id="formSubmit" method="get">
-								<ul id="pagination" class="pagination"></ul>
-								<input type="hidden" value="" id="page" name="page" /> <input
-									type="hidden" value="${sort}" name="sort" /> <input
-									type="hidden" value="${search}" name="search" /> <input
-									type="hidden" value="${memory}" name="memory" />
-							</form>
+			
 						</div>
 					</div>
 				</div>

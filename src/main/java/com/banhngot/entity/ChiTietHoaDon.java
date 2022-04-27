@@ -23,7 +23,7 @@ public class ChiTietHoaDon implements Serializable{
 	@Id
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_DienThoai")
-	private DienThoai dienThoai;
+	private Product dienThoai;
 	
 	@Id
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -34,13 +34,13 @@ public class ChiTietHoaDon implements Serializable{
 	
 	
 	
-	public ChiTietHoaDon(DienThoai dienThoai, HoaDon hoaDon, int soLuong) {
+	public ChiTietHoaDon(Product dienThoai, HoaDon hoaDon, int soLuong) {
 		super();
 		this.dienThoai = dienThoai;
 		this.hoaDon = hoaDon;
 		this.soLuong = soLuong;
 	}
-	public ChiTietHoaDon(DienThoai dienThoai, int soLuong) {
+	public ChiTietHoaDon(Product dienThoai, int soLuong) {
 		super();
 		this.dienThoai = dienThoai;
 		this.soLuong = soLuong;
@@ -48,10 +48,10 @@ public class ChiTietHoaDon implements Serializable{
 	public ChiTietHoaDon() {
 		super();
 	}
-	public DienThoai getDienThoai() {
+	public Product getDienThoai() {
 		return dienThoai;
 	}
-	public void setDienThoai(DienThoai dienThoai) {
+	public void setDienThoai(Product dienThoai) {
 		this.dienThoai = dienThoai;
 	}
 	public HoaDon getHoaDon() {
