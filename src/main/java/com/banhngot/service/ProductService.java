@@ -16,7 +16,7 @@ public interface ProductService {
 //	public List<ThuongHieu> getListThuongHieu();
 	public List<Product> getListDienThoaiTheoPage(int page, int element, List<Product> list);
 	public List<Product> getListDienThoaiCoSapXep(String sort,String searchName,String memory);
-//	public List<Product> getListDienThoaiSearch(String searchName);
-//	public List<Product> getListDienThoaiLienQuan(String tenDM);
+	public List<Product> getListDienThoaiSearch(String searchName);
+	public List<Product> getListDienThoaiLienQuan(String tenDM);
 //	public List<Product> getListDienThoaiTheoThuongHieu(int idThuongHieu);
 }

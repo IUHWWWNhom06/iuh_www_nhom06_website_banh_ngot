@@ -61,11 +61,11 @@ public class ProductDAOImpl implements ProductDAO {
 
 //	@Transactional
 //	@Override
-//	public List<BanhNgot> getListTheoTen(String tenDT) {
+//	public List<BanhNgot> getListTheoTen(String ) {
 //		// TODO Auto-generated method stub
 //		Session currentSession = sessionFactory.getCurrentSession();
 //		Query<BanhNgot> theQuery = currentSession
-//				.createNativeQuery("select * from DienThoai where tenDT like N'%" + tenDT + "%'", BanhNgot.class);
+//				.createNativeQuery("select * from DienThoai where  like N'%" +  + "%'", BanhNgot.class);
 //		List<BanhNgot> dts = theQuery.getResultList();
 //		return dts;
 //	}
@@ -86,7 +86,7 @@ public class ProductDAOImpl implements ProductDAO {
 //		List<BanhNgot> dts = new ArrayList<BanhNgot>();
 //		Session currentSession = sessionFactory.getCurrentSession();
 //		String sql = "select id, SUM(ct.soLuong) as sum from DIENTHOAI as dt join CHITIETHOADON ct on dt.id = ct.id_DienThoai\r\n"
-//				+ "group by dt.id,dt.tenDT\r\n" + "order by sum desc";
+//				+ "group by dt.id,dt.\r\n" + "order by sum desc";
 //		List<?> list = currentSession.createNativeQuery(sql).getResultList();
 //		for (Object object : list) {
 //			Object[] temp = (Object[]) object;
@@ -128,50 +128,27 @@ public class ProductDAOImpl implements ProductDAO {
 		List<Product> dts = new ArrayList<Product>();
 		String sql = null;
 		switch (sortName) {
-//		case "gia_asc":
-//			sql = "select dt.* from DIENTHOAI dt join THUONGHIEU th  on dt.id_ThuongHieu = th.id join THONGSO ts on dt.id_ThongSo = ts.id "
-//					+ "where (LOWER(tenDT) like N'%"+searchName+"%' or LOWER(baoHanh) like N'%"+searchName+"%' or "
-//					+ "LOWER(kichThuoc) like N'%"+searchName+"%' or LOWER(mauSac) like N'%"+searchName+"%' or "
-//					+ "LOWER(tenTH) like N'%"+searchName+"%' or LOWER(xuatXu) like N'%"+searchName+"%' or "
-//					+ "LOWER(heDieuHanh) like N'%"+searchName+"%' or LOWER(manHinh) like N'%"+searchName+"%' or "
-//					+ "LOWER(camera) like N'%"+searchName+"%' or "
-//					+ "LOWER(pin) like N'%"+searchName+"%' or LOWER(ram) like N'%"+searchName+"%' or "
-//					+ "LOWER(sim) like N'%"+searchName+"%') "
-//					+ "and LOWER(boNho) like N'%"+memory+"%' "
-//					+ "order by (giaDT*(100-giamGia))/100  asc";
-//			dts = currentSession.createNativeQuery(sql, Product.class).getResultList();
-//			break;
-//		case "gia_desc":
-//			sql = "select dt.* from DIENTHOAI dt join THUONGHIEU th  on dt.id_ThuongHieu = th.id join THONGSO ts on dt.id_ThongSo = ts.id "
-//					+ "where (LOWER(tenDT) like N'%"+searchName+"%' or LOWER(baoHanh) like N'%"+searchName+"%' or "
-//					+ "LOWER(kichThuoc) like N'%"+searchName+"%' or LOWER(mauSac) like N'%"+searchName+"%' or "
-//					+ "LOWER(tenTH) like N'%"+searchName+"%' or LOWER(xuatXu) like N'%"+searchName+"%' or "
-//					+ "LOWER(heDieuHanh) like N'%"+searchName+"%' or LOWER(manHinh) like N'%"+searchName+"%' or "
-//					+ "LOWER(camera) like N'%"+searchName+"%' or "
-//					+ "LOWER(pin) like N'%"+searchName+"%' or LOWER(ram) like N'%"+searchName+"%' or "
-//					+ "LOWER(sim) like N'%"+searchName+"%') "
-//					+ "and LOWER(boNho) like N'%"+memory+"%' "
-//					+ "order by (giaDT*(100-giamGia))/100  desc";
-//			dts = currentSession.createNativeQuery(sql, Product.class).getResultList();
-//			break;
-//		case "giamgia":
-//			sql = "select dt.* from DIENTHOAI dt join THUONGHIEU th  on dt.id_ThuongHieu = th.id join THONGSO ts on dt.id_ThongSo = ts.id "
-//					+ "where giamGia > 0 and "
-//					+ "(LOWER(tenDT) like N'%"+searchName+"%' or LOWER(baoHanh) like N'%"+searchName+"%' or "
-//					+ "LOWER(kichThuoc) like N'%"+searchName+"%' or LOWER(mauSac) like N'%"+searchName+"%' or "
-//					+ "LOWER(tenTH) like N'%"+searchName+"%' or LOWER(xuatXu) like N'%"+searchName+"%' or "
-//					+ "LOWER(heDieuHanh) like N'%"+searchName+"%' or LOWER(manHinh) like N'%"+searchName+"%' or "
-//					+ "LOWER(camera) like N'%"+searchName+"%' or "
-//					+ "LOWER(pin) like N'%"+searchName+"%' or LOWER(ram) like N'%"+searchName+"%' or "
-//					+ "LOWER(sim) like N'%"+searchName+"%') "
-//					+ "and LOWER(boNho) like N'%"+memory+"%' "
-//					+ "order by (giaDT*(100-giamGia))/100  asc";
-//			dts = currentSession.createNativeQuery(sql, Product.class).getResultList();
-//			break;
+		case "gia_asc":
+			sql = "select dt.* from Product dt "
+					+ "where (LOWER(name) like N'%"+searchName+"%')"
+					+ "order by (giaDT*(100-giamGia))/100  asc";
+			dts = currentSession.createNativeQuery(sql, Product.class).getResultList();
+			break;
+		case "gia_desc":
+			sql = "select dt.* from Product dt "
+					+ "order by (giaDT*(100-giamGia))/100  desc";
+			dts = currentSession.createNativeQuery(sql, Product.class).getResultList();
+			break;
+		case "giamgia":
+			sql = "select dt.* from Product dt "
+					+ "where giamGia > 0 "
+					+ "order by (giaDT*(100-giamGia))/100  asc";
+			dts = currentSession.createNativeQuery(sql, Product.class).getResultList();
+			break;
 //		case "banchay":
 //			sql = "select dt.id, SUM(ct.soLuong) as sum from DIENTHOAI dt join CHITIETHOADON ct on dt.id = ct.id_DienThoai "
 //				+ "join THUONGHIEU th  on dt.id_ThuongHieu = th.id join THONGSO ts on dt.id_ThongSo = ts.id "
-//				+ "where (LOWER(tenDT) like N'%"+searchName+"%' or LOWER(baoHanh) like N'%"+searchName+"%' or "
+//				+ "where (LOWER() like N'%"+searchName+"%' or LOWER(baoHanh) like N'%"+searchName+"%' or "
 //				+ "LOWER(kichThuoc) like N'%"+searchName+"%' or LOWER(mauSac) like N'%"+searchName+"%' or "
 //				+ "LOWER(tenTH) like N'%"+searchName+"%' or LOWER(xuatXu) like N'%"+searchName+"%' or "
 //				+ "LOWER(heDieuHanh) like N'%"+searchName+"%' or LOWER(manHinh) like N'%"+searchName+"%' or "
@@ -179,7 +156,7 @@ public class ProductDAOImpl implements ProductDAO {
 //				+ "LOWER(pin) like N'%"+searchName+"%' or LOWER(ram) like N'%"+searchName+"%' or "
 //				+ "LOWER(sim) like N'%"+searchName+"%') "
 //				+ "and LOWER(boNho) like N'%"+memory+"%' "
-//				+ "group by dt.id,dt.tenDT "
+//				+ "group by dt.id,dt. "
 //				+ "order by sum desc";
 //			List<?> list = currentSession.createNativeQuery(sql).getResultList();
 //			for (Object object : list) {
@@ -190,7 +167,7 @@ public class ProductDAOImpl implements ProductDAO {
 //			break;
 		default:
 			sql = "select dt.* from Product dt "
-//					+ "where (LOWER(tenDT) like N'%"+searchName+"%' like N'%"+searchName+"%' "
+					+ "where (LOWER(name) like N'%"+searchName+"%') "
 //					+ "LOWER(kichThuoc) like N'%"+searchName+"%' or LOWER(mauSac) like N'%"+searchName+"%' or "
 //					+ "LOWER(tenTH) like N'%"+searchName+"%' or LOWER(xuatXu) like N'%"+searchName+"%' or "
 //					+ "LOWER(heDieuHanh) like N'%"+searchName+"%' or LOWER(manHinh) like N'%"+searchName+"%' or "
@@ -205,29 +182,30 @@ public class ProductDAOImpl implements ProductDAO {
 		return dts;
 	}
 
-//	@Override
-//	@Transactional
-//	public List<BanhNgot> getListDienThoaiSearch(String searchName) {
-//		Session currentSession = sessionFactory.getCurrentSession();
-//		List<BanhNgot> dts = new ArrayList<BanhNgot>();
-//		String sql = null;
-//		if (searchName != null && searchName.trim().length() > 0) {
-//			// search for firstName or lastName ... case insensitive
-//			String theName = "N'%" + searchName + "%'";
-//			sql = "select dt.* from DIENTHOAI dt join THUONGHIEU th  on dt.id_ThuongHieu = th.id join THONGSO ts on dt.id_ThongSo = ts.id\r\n"
-//					+ "where LOWER(tenDT) like(" + theName + ") or LOWER(baoHanh) like(" + theName
+	@Override
+	@Transactional
+	public List<Product> getListDienThoaiSearch(String searchName) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		List<Product> dts = new ArrayList<Product>();
+		String sql = null;
+		if (searchName != null && searchName.trim().length() > 0) {
+			// search for firstName or lastName ... case insensitive
+			String theName = "N'%" + searchName + "%'";
+			sql = "select dt.* from Product dt \r\n"
+					+ "where LOWER(name) like(" + theName + ")";
 //					+ ") or LOWER(kichThuoc) like(" + theName + ") or LOWER(mauSac) like(" + theName
 //					+ ") or LOWER(tenTH) like(" + theName + ") or LOWER(xuatXu) like(" + theName
 //					+ ") or LOWER(heDieuHanh) like(" + theName + ") or LOWER(manHinh) like(" + theName
 //					+ ") or LOWER(boNho) like(" + theName + ") or LOWER(camera) like(" + theName
 //					+ ") or LOWER(pin) like(" + theName + ") or LOWER(ram) like(" + theName + ") or LOWER(sim) like("
 //					+ theName + ")";
-//		} else {
-//			sql = "select * from DIENTHOAI";
-//		}
-//		dts = currentSession.createNativeQuery(sql, BanhNgot.class).getResultList();
-//		return dts;
-//	}
+		} else {
+			sql = "select * from Product";
+		}
+		dts = currentSession.createNativeQuery(sql, Product.class).getResultList();
+		System.out.println(dts);
+		return dts;
+	}
 //	@Transactional
 //	@Override
 //	public List<BanhNgot> getListDienThoaiTheoThuongHieu(int idThuongHieu) {
@@ -235,13 +213,13 @@ public class ProductDAOImpl implements ProductDAO {
 //		return session.createNativeQuery("select * from DIENTHOAI where id_ThuongHieu = "+idThuongHieu, BanhNgot.class).getResultList();
 //	}
 //
-//	@Override
-//	public List<BanhNgot> getListDienThoaiLienQuan(String tenDM) {
-//		// TODO Auto-generated method stub
-//		Session currentSession = sessionFactory.getCurrentSession();
-//		List<BanhNgot> list=currentSession.createNativeQuery("select top 4 dt.* from DIENTHOAI dt join DANHMUC dm on dt.id_DanhMuc=dm.id\r\n"
-//				+ " where dm.tenDanhMuc = '"+tenDM+"'",BanhNgot.class).getResultList();
-//		return list;
-//	}
+	@Override
+	public List<Product> getListDienThoaiLienQuan(String tenDM) {
+		// TODO Auto-generated method stub
+		Session currentSession = sessionFactory.getCurrentSession();
+		List<Product> list=currentSession.createNativeQuery("select top 4 dt.* from Product dt join DANHMUC dm on dt.id_DanhMuc=dm.id\r\n"
+				+ " where dm.tenDanhMuc = '"+tenDM+"'",Product.class).getResultList();
+		return list;
+	}
 
 }

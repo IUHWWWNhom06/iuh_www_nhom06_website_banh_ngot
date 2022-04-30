@@ -9,23 +9,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.banhngot.dao.DanhMucDao;
-import com.banhngot.entity.DanhMuc;
+import com.banhngot.dao.TypeProductDao;
+import com.banhngot.entity.TypeProduct;
 
 @Repository
-public class DanhMucDaoImpl implements DanhMucDao {
+public class TypeProductDaoImpl implements TypeProductDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	@Transactional
 	@Override
-	public DanhMuc getDanhMuc(String tenDanhMuc) {
+	public TypeProduct getDanhMuc(String tenDanhMuc) {
 		// TODO Auto-generated method stub
 		Session currentSession = sessionFactory.getCurrentSession();
-		Query<DanhMuc> theQuery = currentSession.createQuery("from DanhMuc where name=:x order by id", DanhMuc.class);
+		Query<TypeProduct> theQuery = currentSession.createQuery("from TypeProduct where name=:x order by id", TypeProduct.class);
 		theQuery.setParameter("x", tenDanhMuc);
-		DanhMuc danhMuc = null;
+		TypeProduct danhMuc = null;
 		try {
 			danhMuc = theQuery.getSingleResult();
 		} catch (Exception e) {
@@ -36,15 +36,15 @@ public class DanhMucDaoImpl implements DanhMucDao {
 	}
 	@Transactional
 	@Override
-	public List<DanhMuc> getListDanhMuc() {
+	public List<TypeProduct> getListDanhMuc() {
 		// TODO Auto-generated method stub
 		Session currentSession = sessionFactory.getCurrentSession();
-		Query<DanhMuc> theQuery = currentSession.createQuery("from DanhMuc order by id", DanhMuc.class);
-		List<DanhMuc> danhMucs = theQuery.getResultList();
+		Query<TypeProduct> theQuery = currentSession.createQuery("from TypeProduct order by id", TypeProduct.class);
+		List<TypeProduct> danhMucs = theQuery.getResultList();
 		return danhMucs;
 	}
 	@Override
-	public void saveDanhMuc(DanhMuc danhMuc) {
+	public void saveDanhMuc(TypeProduct danhMuc) {
 		// TODO Auto-generated method stub
 		Session currentSession = sessionFactory.getCurrentSession();
 		currentSession.saveOrUpdate(danhMuc);
@@ -53,22 +53,22 @@ public class DanhMucDaoImpl implements DanhMucDao {
 	public void deleteDanhMuc(int id) {
 		// TODO Auto-generated method stub
 		Session currentSession = sessionFactory.getCurrentSession();
-		DanhMuc danhMuc=currentSession.get(DanhMuc.class, id);
+		TypeProduct danhMuc=currentSession.get(TypeProduct.class, id);
 		currentSession.delete(danhMuc);
 	}
 	@Override
-	public DanhMuc getDanhMuc(int id) {
+	public TypeProduct getDanhMuc(int id) {
 		// TODO Auto-generated method stub
 		Session currentSession = sessionFactory.getCurrentSession();
-		DanhMuc danhMuc=currentSession.get(DanhMuc.class, id);
+		TypeProduct danhMuc=currentSession.get(TypeProduct.class, id);
 		return danhMuc;
 	}
 	@Override
-	public List<DanhMuc> getListTheoTen(String tenDanhMuc) {
+	public List<TypeProduct> getListTheoTen(String tenDanhMuc) {
 		// TODO Auto-generated method stub
 		Session currentSession = sessionFactory.getCurrentSession();
-		Query<DanhMuc> theQuery = currentSession.createNativeQuery("select * from DanhMuc where tenDanhMuc like N'%"+tenDanhMuc+"%'", DanhMuc.class);
-		List<DanhMuc> danhMucs = theQuery.getResultList();
+		Query<TypeProduct> theQuery = currentSession.createNativeQuery("select * from TypeProduct where tenDanhMuc like N'%"+tenDanhMuc+"%'", TypeProduct.class);
+		List<TypeProduct> danhMucs = theQuery.getResultList();
 		return danhMucs;
 	}
 }

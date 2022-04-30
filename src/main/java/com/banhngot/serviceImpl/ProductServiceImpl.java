@@ -76,20 +76,20 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return dienThoaiDAO.getListDienThoaiCoSapXep(sort,searchName,memory);
 	}
-//
-//	@Override
-//	public List<Product> getListDienThoaiSearch(String searchName) {
-//		// TODO Auto-generated method stub
-//		return dienThoaiDAO.getListDienThoaiSearch(searchName);
-//	}
-//
-//	@Transactional
-//	@Override
-//	public List<Product> getListDienThoaiLienQuan(String tenDM) {
-//		// TODO Auto-generated method stub
-//		return dienThoaiDAO.getListDienThoaiLienQuan(tenDM);
-//
-//	}
+
+	@Override
+	public List<Product> getListDienThoaiSearch(String searchName) {
+		// TODO Auto-generated method stub
+		return dienThoaiDAO.getListDienThoaiSearch(searchName);
+	}
+
+	@Transactional
+	@Override
+	public List<Product> getListDienThoaiLienQuan(String tenDM) {
+		// TODO Auto-generated method stub
+		return dienThoaiDAO.getListDienThoaiLienQuan(tenDM);
+
+	}
 //	@Override
 //	public List<Product> getListDienThoaiTheoThuongHieu(int idThuongHieu) {
 //		// TODO Auto-generated method stub

@@ -13,23 +13,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.banhngot.entity.DanhMuc;
+import com.banhngot.entity.TypeProduct;
 import com.banhngot.entity.Product;
-import com.banhngot.service.DanhMucService;
+import com.banhngot.service.TypeProductService;
 import com.banhngot.service.ProductService;
 
 @Controller(value = "danhMucControllerOfAdmin")
 @RequestMapping("/admin")
 public class DanhMucController {
 	@Autowired
-	private DanhMucService danhMucService;
+	private TypeProductService danhMucService;
 
 	@Autowired
 	private ProductService dienThoaiService;
 
 	@GetMapping("/cate/list")
 	private String getListDanhMuc(Model thModel) {
-		List<DanhMuc> cates = danhMucService.getListDanhMuc();
+		List<TypeProduct> cates = danhMucService.getListDanhMuc();
 		List<Product> dts = dienThoaiService.getListDienThoai();
 		thModel.addAttribute("cates", cates);
 		thModel.addAttribute("dts", dts);
@@ -38,20 +38,20 @@ public class DanhMucController {
 
 	@GetMapping("/cate/showFormEdit")
 	private String showFormEditUser(@RequestParam("cateId") int id, Model theModel) {
-		DanhMuc cate = danhMucService.getDanhMuc(id);
+		TypeProduct cate = danhMucService.getDanhMuc(id);
 		theModel.addAttribute("cate", cate);
 		return "admin/cate-form";
 	}
 
 	@GetMapping("/cate/showFormAdd")
 	private String showFormAddUser(Model theModel) {
-		DanhMuc cate = new DanhMuc();
+		TypeProduct cate = new TypeProduct();
 		theModel.addAttribute("cate", cate);
 		return "admin/cate-form";
 	}
 
 	@PostMapping("/cate/save")
-	private String editUser(@ModelAttribute("cate") @Validated DanhMuc cate, BindingResult result) {
+	private String editUser(@ModelAttribute("cate") @Validated TypeProduct cate, BindingResult result) {
 		if (result.hasErrors()) {
 			return "admin/cate-form";
 		} else {

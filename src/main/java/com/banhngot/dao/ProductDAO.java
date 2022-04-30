@@ -13,11 +13,11 @@ public interface ProductDAO {
 //	public List<BanhNgot> getListTheoTen(String tenDT);
 //	public List<BanhNgot> getListDienThoaiGiamGia();
 //	public List<BanhNgot> getListDienThoaiBanChay();
-//	public List<BanhNgot> getListDienThoaiLienQuan(String tenDM);
+	public List<Product> getListDienThoaiLienQuan(String tenDM); //Theo danh muc
 //	public List<ThuongHieu> getListThuongHieu();
 	public List<Product> getListDienThoaiTheoPage(int page, int element, List<Product> list);
 	public List<Product> getListDienThoaiCoSapXep(String sortName,String searchName,String memory);
-//	public List<BanhNgot> getListDienThoaiSearch(String searchName);
+	public List<Product> getListDienThoaiSearch(String searchName);
 //	public List<BanhNgot> getListDienThoaiTheoThuongHieu(int idThuongHieu);
 	
 }

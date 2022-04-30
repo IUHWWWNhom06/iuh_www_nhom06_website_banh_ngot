@@ -13,8 +13,8 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.annotations.Nationalized;
 
 @Entity
-@Table(name = "DANHMUC")
-public class DanhMuc implements Serializable{
+@Table(name = "TypeProduct")
+public class TypeProduct implements Serializable{
 	/**
 	 * 
 	 */
@@ -45,18 +45,18 @@ public class DanhMuc implements Serializable{
 		this.tenDanhMuc = tenDanhMuc;
 	}
 
-	public DanhMuc(Integer id, String tenDanhMuc) {
+	public TypeProduct(Integer id, String tenDanhMuc) {
 		super();
 		this.id = id;
 		this.tenDanhMuc = tenDanhMuc;
 	}
 
-	public DanhMuc(String tenDanhMuc) {
+	public TypeProduct(String tenDanhMuc) {
 		super();
 		this.tenDanhMuc = tenDanhMuc;
 	}
 
-	public DanhMuc() {
+	public TypeProduct() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

@@ -21,7 +21,7 @@ import com.banhngot.entity.BinhLuan;
 import com.banhngot.entity.Product;
 import com.banhngot.entity.ThuongHieu;
 import com.banhngot.service.BinhLuanService;
-import com.banhngot.service.DanhMucService;
+import com.banhngot.service.TypeProductService;
 import com.banhngot.service.ProductService;
 
 @Controller(value = "dienThoaiControllerOfUser")
@@ -34,8 +34,10 @@ public class ProductController {
 	private BinhLuanService binhLuanService;
 	
 	@Autowired
-	private DanhMucService danhMucService;
+	private TypeProductService danhMucService;
 
+	
+	//@RequestParam(value="search", defaultValue = "") String search là nhận search từ bên jsp
 	@GetMapping("/danhsach")
 	public String listCustomers(Model theModel, @RequestParam(required = false) String sort,  @RequestParam(value = "page", defaultValue = "1") int page,
 			@RequestParam(value="search", defaultValue = "") String search,@RequestParam(value="memory", defaultValue = "") String memory) {
@@ -52,26 +54,27 @@ public class ProductController {
 		theModel.addAttribute("dienthoais", dienThoaiService.getListDienThoaiTheoPage(page,12, listDienThoai));
 		theModel.addAttribute("total", listDienThoai.size());	
 		theModel.addAttribute("dms", danhMucService.getListDanhMuc());
+		System.out.println(search);
 		return "user/danhsach-dienthoai2";
 	}
 	
-//	@GetMapping("/danhmuc")
-//	public String danhmuc(Model theModel, HttpSession session) {
-//		List<Product> dts = (List<Product>) session.getAttribute("dts");
-//		if (dts == null) {
-//			dts = dienThoaiService.getListDienThoaiLienQuan(danhMucService.getListDanhMuc().get(0).getTenDanhMuc());
-//		}
-//		theModel.addAttribute("dts", dts);
-//		theModel.addAttribute("iddanhmuc", session.getAttribute("iddanhmuc"));
-//		theModel.addAttribute("dms", danhMucService.getListDanhMuc());
-//		return "user/danhmuc";
-//	}
-//	@RequestMapping(value = "/danhmuc/{danhMucId}", method = RequestMethod.GET)
-//	public String getDienThoaiTheoDanhMuc(Model model,@PathVariable(value = "danhMucId")int danhMucId,HttpSession session) {
-//		session.setAttribute("dts", dienThoaiService.getListDienThoaiLienQuan(danhMucService.getDanhMuc(danhMucId).getTenDanhMuc()));
-//		session.setAttribute("iddanhmuc", danhMucId);
-//		return "redirect:/dienthoai/danhmuc";
-//	}
+	@GetMapping("/danhmuc")
+	public String danhmuc(Model theModel, HttpSession session) {
+		List<Product> dts = (List<Product>) session.getAttribute("dts");
+		if (dts == null) {
+			dts = dienThoaiService.getListDienThoaiLienQuan(danhMucService.getListDanhMuc().get(0).getTenDanhMuc());
+		}
+		theModel.addAttribute("dts", dts);
+		theModel.addAttribute("iddanhmuc", session.getAttribute("iddanhmuc"));
+		theModel.addAttribute("dms", danhMucService.getListDanhMuc());
+		return "user/danhmuc";
+	}
+	@RequestMapping(value = "/danhmuc/{danhMucId}", method = RequestMethod.GET)
+	public String getDienThoaiTheoDanhMuc(Model model,@PathVariable(value = "danhMucId")int danhMucId,HttpSession session) {
+		session.setAttribute("dts", dienThoaiService.getListDienThoaiLienQuan(danhMucService.getDanhMuc(danhMucId).getTenDanhMuc()));
+		session.setAttribute("iddanhmuc", danhMucId);
+		return "redirect:/dienthoai/danhmuc";
+	}
 //	
 //	@GetMapping("/chitietdienthoai")
 //	public String chitietdienthoai(Model model, HttpSession session) {
@@ -91,20 +94,20 @@ public class ProductController {
 		session.setAttribute("size", dt.getHinhAnh().size());
 		return "redirect:/dienthoai/chitietdienthoai";
 	}
-//	@GetMapping("/search")
-//	public String searchDienThoai(Model model, @RequestParam(required = false) String searchName,  @RequestParam(value = "page", defaultValue = "1") int page) {
-//		List<Product> dts = dienThoaiService.getListDienThoaiSearch(searchName);
-//		if (dts.size()>0) {
-//			model.addAttribute("page", page);
-//			model.addAttribute("dienthoais", dienThoaiService.getListDienThoaiTheoPage(page,8, dts));
+	@GetMapping("/search")
+	public String searchDienThoai(Model model, @RequestParam(required = false) String searchName,  @RequestParam(value = "page", defaultValue = "1") int page) {
+		List<Product> dts = dienThoaiService.getListDienThoaiSearch(searchName);
+		if (dts.size()>0) {
+			model.addAttribute("page", page);
+			model.addAttribute("dienthoais", dienThoaiService.getListDienThoaiTheoPage(page,8, dts));
 //			model.addAttribute("total", dts.size());
 //			model.addAttribute("ths", dienThoaiService.getListThuongHieu());
-//			return "user/danhsach-dienthoai2";
-//		}else {
-//			System.out.println("không có điện thoại!");
-//			return "user/notfounddienthoai";
-//		}
-//	}
+			return "user/danhsach-dienthoai2";
+		}else {
+			System.out.println("không có điện thoại!");
+			return "user/notfounddienthoai";
+		}
+	}
 	@RequestMapping(value = "/savebinhluan", method = RequestMethod.POST)
 	public String themBinhLuan(@ModelAttribute("binhluan") BinhLuan binhLuan,HttpSession session) {
 		if (!binhLuan.getNoiDung().equals("")||!binhLuan.getTenBinhLuan().equals("")) {

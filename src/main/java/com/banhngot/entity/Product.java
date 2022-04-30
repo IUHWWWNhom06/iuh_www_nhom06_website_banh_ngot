@@ -44,7 +44,7 @@ public class Product implements Serializable{
 	@Nationalized
 	@Size(min = 1, message = "Không được bỏ trống")
 	@Pattern(regexp = "[A-Za-z0-9 \\p{L}+]{1,}",message = "Không chứa kí tự đặc biệt")
-	private String tenDT;
+	private String name;
 	
 	
 	@Min(value = 1, message = "Phải lớn hơn 0")
@@ -78,7 +78,7 @@ public class Product implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "id_DanhMuc")
-	private DanhMuc danhMuc;
+	private TypeProduct danhMuc;
 	
 	
 	@OneToMany(mappedBy = "dienThoai", fetch = FetchType.LAZY)
@@ -93,13 +93,13 @@ public class Product implements Serializable{
 	public Product() {
 		super();
 	}
-	
-	public Product(Integer id, String tenDT, float giaDT, float giamGia, int soLuongTon, String description,
-			String ingredient, int expiry, String anhURL, DanhMuc danhMuc, List<ChiTietHoaDon> danhSachSanPhamHoaDon,
-			List<String> hinhAnh) {
+
+	public Product(Integer id, String name, float giaDT, float giamGia, int soLuongTon, String description,
+			String ingredient, int expiry, String anhURL, TypeProduct danhMuc,
+			List<ChiTietHoaDon> danhSachSanPhamHoaDon, List<String> hinhAnh) {
 		super();
 		this.id = id;
-		this.tenDT = tenDT;
+		this.name = name;
 		this.giaDT = giaDT;
 		this.giamGia = giamGia;
 		this.soLuongTon = soLuongTon;
@@ -120,12 +120,12 @@ public class Product implements Serializable{
 		this.id = id;
 	}
 
-	public String getTenDT() {
-		return tenDT;
+	public String getName() {
+		return name;
 	}
 
-	public void setTenDT(String tenDT) {
-		this.tenDT = tenDT;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public float getGiaDT() {
@@ -184,11 +184,11 @@ public class Product implements Serializable{
 		this.anhURL = anhURL;
 	}
 
-	public DanhMuc getDanhMuc() {
+	public TypeProduct getDanhMuc() {
 		return danhMuc;
 	}
 
-	public void setDanhMuc(DanhMuc danhMuc) {
+	public void setDanhMuc(TypeProduct danhMuc) {
 		this.danhMuc = danhMuc;
 	}
 
@@ -212,6 +212,7 @@ public class Product implements Serializable{
 		return serialVersionUID;
 	}
 	
+
 	
 	
 //	@NotNull(message = "Không được bỏ trống")

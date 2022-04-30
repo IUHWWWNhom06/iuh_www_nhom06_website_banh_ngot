@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/common/taglib.jsp"%>
 <c:url value="/resources" var="resources" />
+<!-- Để lấy link có đuôi -->
 <c:url var="linkgia_asc" value="/dienthoai/danhsach">
 	<c:param name="sort" value="gia_asc" />
 	<c:param name="search" value="${search}" />
@@ -18,50 +19,7 @@
 	<c:param name="memory" value="${memory}" />
 </c:url>
 
-<!--
 
-<c:url var="linkbanchay" value="/dienthoai/danhsach">
-	<c:param name="sort" value="banchay" />
-	<c:param name="search" value="${search}" />
-	<c:param name="memory" value="${memory}" />
-</c:url>
-<c:url var="linkhotnhat" value="/dienthoai/danhsach">
-	<c:param name="sort" value="hotnhat" />
-	<c:param name="search" value="${search}" />
-	<c:param name="memory" value="${memory}" />
-</c:url>
-<c:url var="memory1" value="/dienthoai/danhsach">
-	<c:param name="sort" value="${sort }" />
-	<c:param name="memory" value="16GB" />
-	<c:param name="search" value="${search}" />
-</c:url>
-<c:url var="memory2" value="/dienthoai/danhsach">
-	<c:param name="sort" value="${sort }" />
-	<c:param name="memory" value="32GB" />
-	<c:param name="search" value="${search}" />
-</c:url>
-<c:url var="memory3" value="/dienthoai/danhsach">
-	<c:param name="sort" value="${sort }" />
-	<c:param name="memory" value="64GB" />
-	<c:param name="search" value="${search}" />
-</c:url>
-<c:url var="memory4" value="/dienthoai/danhsach">
-	<c:param name="sort" value="${sort }" />
-	<c:param name="memory" value="128GB" />
-	<c:param name="search" value="${search}" />
-</c:url>
-<c:url var="memory5" value="/dienthoai/danhsach">
-	<c:param name="sort" value="${sort }" />
-	<c:param name="memory" value="256GB" />
-	<c:param name="search" value="${search}" />
-</c:url>
-<c:url var="memory6" value="/dienthoai/danhsach">
-	<c:param name="sort" value="${sort }" />
-	<c:param name="memory" value="512GB" />
-	<c:param name="search" value="${search}" /> -->
-
-	
-</c:url>
 <div class="mt-3">
 	<div class="app-body">
 		<div class="container-fluid">
@@ -86,7 +44,6 @@
 												style="width: 200; border-bottom: 1px solid #c3c3c3;">${dm.tenDanhMuc}</button>
 										</div>
 									</li>
-
 								</form:form>
 
 							</c:forEach>
@@ -179,7 +136,7 @@
 										href="${pageContext.request.contextPath}/dienthoai/laychitiet/${dt.id}">
 										<div class="home-product-item-img"
 											style="background-image: url(${resources}/user/images/SanPham/${dt.anhURL}); width: 90%;"></div>
-										<h4 class="home-product-item__name">${dt.tenDT}
+										<h4 class="home-product-item__name">${dt.name}
 											</h4> <c:if test="${dt.giamGia>0}">
 											<div class="home-product-item__price">
 												<span class="home-product-item__price-old"><fmt:formatNumber
@@ -213,8 +170,17 @@
 
 						</div>
 						<br>
+						<br>
 						<div class="col-md-12">
-			
+							<form
+								action="${pageContext.request.contextPath}/dienthoai/danhsach"
+								id="formSubmit" method="get">
+								<ul id="pagination" class="pagination"></ul>
+								<input type="hidden" value="" id="page" name="page" /> <input
+									type="hidden" value="${sort}" name="sort" /> <input
+									type="hidden" value="${search}" name="search" /> <input
+									type="hidden" value="${memory}" name="memory" />
+							</form>
 						</div>
 					</div>
 				</div>

@@ -42,7 +42,7 @@
 								<div class="home-product-item-img"
 									style="background-image: url(${resources}/user/images/SanPham/${dt.anhURL}); width: 90%;"></div>
 								<h4 class="home-product-item__name">${dt.tenDT}
-									(${dt.thongSo.boNho})</h4> <c:if test="${dt.giamGia>0}">
+									</h4> <c:if test="${dt.giamGia>0}">
 									<div class="home-product-item__price">
 										<span class="home-product-item__price-old"><fmt:formatNumber
 												type="number" pattern="#,###,###.##" value="${dt.giaDT}" />
@@ -58,11 +58,7 @@
 											đ </span>
 									</div>
 								</c:if>
-								<div class="home-product-item__origin">
-									${dt.thongSo.heDieuHanh } <span
-										class="home-product-item__name-o">
-										${dt.thuongHieu.xuatXu } </span>
-								</div>
+							
 								<div class="home-product-item__favorite">
 									<i class="fas fa-check"></i> <span>Yêu thích</span>
 								</div> <c:if test="${dt.giamGia>0}">

@@ -23,11 +23,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import com.banhngot.entity.DanhMuc;
+import com.banhngot.entity.TypeProduct;
 import com.banhngot.entity.Product;
 import com.banhngot.entity.ThongSo;
 import com.banhngot.entity.ThuongHieu;
-import com.banhngot.service.DanhMucService;
+import com.banhngot.service.TypeProductService;
 import com.banhngot.service.ProductService;
 import com.banhngot.service.ThongSoService;
 import com.banhngot.service.ThuongHieuService;
@@ -40,7 +40,7 @@ public class DienThoaiController {
 	private ProductService dienThoaiService;
 
 	@Autowired
-	private DanhMucService danhMucService;
+	private TypeProductService danhMucService;
 
 	@Autowired
 	private ThongSoService thongSoService;
@@ -68,7 +68,7 @@ public class DienThoaiController {
 	@GetMapping("/product/showFormEdit")
 	private String showFormEditProduct(@RequestParam("productId") int id, Model theModel, HttpSession session) {
 		Product product = dienThoaiService.getDienThoai(id);
-		List<DanhMuc> cates = danhMucService.getListDanhMuc();
+		List<TypeProduct> cates = danhMucService.getListDanhMuc();
 		int cate_id = product.getDanhMuc().getId();
 
 		session.setAttribute("photos", product.getHinhAnh());
@@ -82,7 +82,7 @@ public class DienThoaiController {
 	@GetMapping("/product/showFormAdd")
 	private String showFormAddProduct(Model theModel) {
 		Product product = new Product();
-		List<DanhMuc> cates = danhMucService.getListDanhMuc();
+		List<TypeProduct> cates = danhMucService.getListDanhMuc();
 		theModel.addAttribute("cates", cates);
 		theModel.addAttribute("product", product);
 		return "admin/product-form";
@@ -94,7 +94,7 @@ public class DienThoaiController {
 			@RequestParam() CommonsMultipartFile[] files, HttpServletRequest request, HttpSession session)
 			throws Exception {
 		if (result.hasErrors()) {
-			List<DanhMuc> cates = danhMucService.getListDanhMuc();
+			List<TypeProduct> cates = danhMucService.getListDanhMuc();
 			theModel.addAttribute("cates", cates);
 			return "admin/product-form";
 		} else {
@@ -122,7 +122,7 @@ public class DienThoaiController {
 			}
 			ThongSo ts = thongSoService.getThongSo(Integer.parseInt(detail_id));
 //			product.setThongSo(ts);
-			DanhMuc cate = danhMucService.getDanhMuc(id);
+			TypeProduct cate = danhMucService.getDanhMuc(id);
 			product.setDanhMuc(cate);
 			ThuongHieu thuongHieu = thuongHieuService.getTheoTen(cate.getTenDanhMuc().trim());
 //			product.setThuongHieu(thuongHieu);
