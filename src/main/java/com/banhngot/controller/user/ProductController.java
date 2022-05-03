@@ -24,7 +24,7 @@ import com.banhngot.service.BinhLuanService;
 import com.banhngot.service.TypeProductService;
 import com.banhngot.service.ProductService;
 
-@Controller(value = "productControllerOfUser")
+@Controller(value = "dienThoaiControllerOfUser")
 @RequestMapping("/product")
 public class ProductController { 
 	@Autowired
@@ -55,7 +55,7 @@ public class ProductController {
 		theModel.addAttribute("total", listProduct.size());	
 		theModel.addAttribute("dms", danhMucService.getListDanhMuc());
 		System.out.println(search);
-		return "user/danhsach-product2";
+		return "user/danhsach-dienthoai2";
 	}
 	
 	@GetMapping("/danhmuc")
