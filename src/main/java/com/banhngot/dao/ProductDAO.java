@@ -3,7 +3,6 @@ package com.banhngot.dao;
 import java.util.List;
 
 import com.banhngot.entity.Product;
-import com.banhngot.entity.ThuongHieu;
 
 public interface ProductDAO {
 	public void saveProduct(Product dt);

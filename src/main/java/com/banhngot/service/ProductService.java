@@ -3,7 +3,6 @@ package com.banhngot.service;
 import java.util.List;
 
 import com.banhngot.entity.Product;
-import com.banhngot.entity.ThuongHieu;
 
 public interface ProductService {
 	public void saveProduct(Product dt);

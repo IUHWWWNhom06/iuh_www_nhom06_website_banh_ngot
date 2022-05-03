@@ -48,15 +48,15 @@ public class Product implements Serializable{
 	
 	
 	@Min(value = 1, message = "Phải lớn hơn 0")
-	private float giaDT;
+	private float price;
 
 	@NotNull(message = "Không được bỏ trống")
 	@Min(value = 0, message = "Phải lớn hơn 0")	
-	private float giamGia;
+	private float discount;
 
 	@NotNull(message = "Không được bỏ trống")
 	@Min(value = 1, message = "Phải lớn hơn 0")	
-	private int soLuongTon;
+	private int quantity;
 	
 	
 	@Nationalized
@@ -94,15 +94,15 @@ public class Product implements Serializable{
 		super();
 	}
 
-	public Product(Integer id, String name, float giaDT, float giamGia, int soLuongTon, String description,
+	public Product(Integer id, String name, float price, float discount, int quantity, String description,
 			String ingredient, int expiry, String anhURL, TypeProduct danhMuc,
 			List<ChiTietHoaDon> danhSachSanPhamHoaDon, List<String> hinhAnh) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.giaDT = giaDT;
-		this.giamGia = giamGia;
-		this.soLuongTon = soLuongTon;
+		this.price = price;
+		this.discount = discount;
+		this.quantity = quantity;
 		this.description = description;
 		this.ingredient = ingredient;
 		this.expiry = expiry;
@@ -128,28 +128,28 @@ public class Product implements Serializable{
 		this.name = name;
 	}
 
-	public float getGiaDT() {
-		return giaDT;
+	public float getPrice() {
+		return price;
 	}
 
-	public void setGiaDT(float giaDT) {
-		this.giaDT = giaDT;
+	public void setPrice(float price) {
+		this.price = price;
 	}
 
-	public float getGiamGia() {
-		return giamGia;
+	public float getDiscount() {
+		return discount;
 	}
 
-	public void setGiamGia(float giamGia) {
-		this.giamGia = giamGia;
+	public void setDiscount(float discount) {
+		this.discount = discount;
 	}
 
-	public int getSoLuongTon() {
-		return soLuongTon;
+	public int getQuantity() {
+		return quantity;
 	}
 
-	public void setSoLuongTon(int soLuongTon) {
-		this.soLuongTon = soLuongTon;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 	public String getDescription() {
@@ -211,42 +211,6 @@ public class Product implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-
-	
-	
-//	@NotNull(message = "Không được bỏ trống")
-//	@Min(value = 0, message = "Phải lớn hơn 0")	
-//	private float thue;
-
-//	@NotNull(message = "Không được bỏ trống")
-//	@Min(value = 1, message = "Phải lớn hơn 0")	
-//	private float trongLuong;
-	
-//	@Nationalized
-//	@Pattern(regexp = ".{1,}",message = "Không được bỏ trống")
-//	private String kichThuoc;
-	
-//	@Nationalized
-//	@Size(min = 1, message = "Không được bỏ trống")
-//	@Pattern(regexp = "[A-Za-z0-9 \\p{L}+]{1,}",message = "Không chứa kí tự đặc biệt")
-//	private String mauSac;
-	
-//	@ManyToOne
-//	@JoinColumn(name = "id_ThuongHieu")
-//	private ThuongHieu thuongHieu;
-//	
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "id_ThongSo")
-//	private ThongSo thongSo;
-	
-//	@Nationalized
-//	@Size(min = 1, message = "Không được bỏ trống")
-//	@Pattern(regexp = "[A-Za-z0-9 \\p{L}+]{1,}",message = "Không chứa kí tự đặc biệt")
-//	private String baoHanh;
-	
-	
-
 
 	
 	

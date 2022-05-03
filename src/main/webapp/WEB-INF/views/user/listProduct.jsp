@@ -3,15 +3,15 @@
 <%@ include file="/common/taglib.jsp"%>
 <c:url value="/resources" var="resources" />
 <!-- Để lấy link có đuôi -->
-<c:url var="linkgia_asc" value="/product/danhsach">
+<c:url var="linkgia_asc" value="/banhngot/danhsach">
 	<c:param name="sort" value="gia_asc" />
 	<c:param name="search" value="${search}" />
 </c:url>
-<c:url var="linkgia_desc" value="/product/danhsach">
+<c:url var="linkgia_desc" value="/banhngot/danhsach">
 	<c:param name="sort" value="gia_desc" />
 	<c:param name="search" value="${search}" />
 </c:url>
-<c:url var="linkgiamgia" value="/product/danhsach">
+<c:url var="linkgiamgia" value="/banhngot/danhsach">
 	<c:param name="sort" value="giamgia" />
 	<c:param name="search" value="${search}" />
 </c:url>
@@ -29,7 +29,7 @@
 						<ul class="category-list">
 							<c:forEach var="dm" items="${dms}">
 								<form:form
-									action="${pageContext.request.contextPath}/product/danhmuc"
+									action="${pageContext.request.contextPath}/banhngot/danhmuc"
 									method="get">
 									<input type="hidden" value="${sort}" name="sort" />
 									<input type="hidden" value="${dm.tenDanhMuc}" name="search" />
@@ -53,7 +53,7 @@
 								<span class="home-filter__label fs14">Sắp xếp theo</span>
 								<c:if test="${param.sort=='giamgia' }">
 									<a class="text-dark" href="${linkgiamgia}"><button
-											class="home-filter-btn btn btn-warning fs14">Giảm
+											class="home-filter-btn btn fs14" style="background: #ff8533;color:#fff;">Giảm
 											giá</button></a>
 								</c:if>
 								<c:if test="${param.sort!='giamgia' }">
@@ -88,35 +88,35 @@
 
 									<a class="home-product-item pb-3 text-deco 	"
 										style="padding-top: 15px;"
-										href="${pageContext.request.contextPath}/product/danhsach">
+										href="${pageContext.request.contextPath}/banhngot/danhsach">
 										<div class="home-product-item-img"
 											style="background-image: url(${resources}/user/images/SanPham/${item.anhURL}); width: 90%;"></div>
 										<h4 class="home-product-item__name">${item.name}
-											</h4> <c:if test="${item.giamGia>0}">
+											</h4> <c:if test="${item.discount>0}">
 											<div class="home-product-item__price">
 												<span class="home-product-item__price-old"><fmt:formatNumber
-														type="number" pattern="#,###,###.##" value="${item.giaDT}" />
+														type="number" pattern="#,###,###.##" value="${item.price}" />
 													đ</span> <span class="home-product-item__price-current"
 													style="color: red;"><fmt:formatNumber type="number"
 														pattern="#,###,###.##"
-														value="${(item.giaDT*(100-item.giamGia))/100}" /> đ </span>
+														value="${(item.price*(100-item.discount))/100}" /> đ </span>
 											</div>
-										</c:if> <c:if test="${item.giamGia<=0}">
+										</c:if> <c:if test="${item.discount<=0}">
 											<div class="home-product-item__price">
 												<span class="home-product-item__price-current float-right"><fmt:formatNumber
-														type="number" pattern="#,###,###.##" value="${item.giaDT}" />
+														type="number" pattern="#,###,###.##" value="${item.price}" />
 													đ </span>
 											</div>
 										</c:if>
 								
-										 <c:if test="${item.giamGia>0}">
+										 <c:if test="${item.discount>0}">
 											<div class="home-product-item__sale-off">
-												<span class="home-product-item__percent">${item.giamGia}</span>
+												<span class="home-product-item__percent">${item.discount}</span>
 												<span class="home-product-item__label">GIẢM</span>
 											</div>
 										</c:if>
-									</a> <a class="btn btn-success btn-block fs14"
-										href="${pageContext.request.contextPath}/user/themvaogiohang/${item.id}">
+									</a> <a class="btn btn-block fs14" style="background: #ff8533; color: #fff;"
+										href="${pageContext.request.contextPath}/user/themvaocart/${item.id}">
 										Thêm vào giỏ hàng </a>
 								</div>
 							</c:forEach>

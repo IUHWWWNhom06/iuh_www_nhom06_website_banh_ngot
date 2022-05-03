@@ -2,11 +2,11 @@
 <decorators defaultdir="/decorators">
 
 	<decorator name="danhsach-product2" page="user1.jsp">
-		<pattern>/product/danhsach</pattern>
+		<pattern>/banhngot/danhsach</pattern>
 	</decorator>
 
 	<decorator name="danhmuc" page="user1.jsp">
-		<pattern>/product/danhmuc</pattern>
+		<pattern>/banhngot/danhmuc</pattern>
 	</decorator>
 	
 	<decorator name="timtaikhoan" page="user1.jsp">
@@ -26,10 +26,10 @@
 	</decorator>
 	
 	<decorator name="search" page="user1.jsp">
-		<pattern>/product/search</pattern>
+		<pattern>/banhngot/search</pattern>
 	</decorator>
-	<decorator name="user-giohang" page="user1.jsp">
-		<pattern>/user/gioHang</pattern>
+	<decorator name="user-cart" page="user1.jsp">
+		<pattern>/user/cart</pattern>
 	</decorator>
 	<decorator name="user-dangnhap" page="user1.jsp">
 		<pattern>/user/formDangNhap</pattern>

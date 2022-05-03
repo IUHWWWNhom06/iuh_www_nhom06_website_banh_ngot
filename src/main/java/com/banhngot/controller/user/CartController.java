@@ -30,27 +30,27 @@ public class CartController {
 			session.setAttribute("tamtinh", 0);
 			session.setAttribute("giamgia", 0);
 			session.setAttribute("tongtien", 0);
-			session.setAttribute("tinhtranggiohang", "Không có sản phẩm nào trong giỏ hàng");
+			session.setAttribute("tinhtrangcart", "Không có sản phẩm nào trong giỏ hàng");
 			try {
 				model.addAttribute("tenDangNhap", principal.getName());
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-			return "user/giohang";
+			return "user/cart";
 		} else {
 			if (cart.size() == 0) {
 				session.setAttribute("tamtinh", 0);
 				session.setAttribute("giamgia", 0);
 				session.setAttribute("tongtien", 0);
-				session.setAttribute("tinhtranggiohang", "Không có sản phẩm nào trong giỏ hàng");
+				session.setAttribute("tinhtrangcart", "Không có sản phẩm nào trong giỏ hàng");
 				try {
 					model.addAttribute("tenDangNhap", principal.getName());
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				return "user/giohang";
+				return "user/cart";
 			} else {
-				session.setAttribute("tinhtranggiohang", "");
+				session.setAttribute("tinhtrangcart", "");
 				capNhatGiaTrongCart(session);
 				try {
 					model.addAttribute("tenDangNhap", principal.getName());
@@ -58,12 +58,12 @@ public class CartController {
 					// TODO: handle exception
 				}
 
-				return "user/giohang";
+				return "user/cart";
 			}
 		}
 	}
 
-	@RequestMapping(value = "/themvaogiohang/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/themvaocart/{id}", method = RequestMethod.GET)
 	public String themVaoGioGang(@PathVariable(value = "id") int id, Model model, HttpSession session) {
 		if (session.getAttribute("cart") == null) {
 			List<ProductCart> cart = new ArrayList<ProductCart>();
@@ -93,8 +93,8 @@ public class CartController {
 		double thue = 0;
 		for (ProductCart productCart : cart) {
 			thue++;
-			tamTinh += productCart.getProduct().getGiaDT() * productCart.getSoLuong();
-			giamGia += (tamTinh * productCart.getProduct().getGiamGia()) / 100;
+			tamTinh += productCart.getProduct().getPrice() * productCart.getSoLuong();
+			giamGia += (tamTinh * productCart.getProduct().getDiscount()) / 100;
 //			thue += (tamTinh * productCart.getProduct().getThue()) / 100;
 			session.setAttribute("tamtinh", tamTinh);
 			session.setAttribute("giamgia", giamGia);
@@ -111,7 +111,7 @@ public class CartController {
 		return -1;
 	}
 
-	@RequestMapping(value = "/xoadienthoaigiohang/{id}")
+	@RequestMapping(value = "/xoaproductcart/{id}")
 	public String xoaProductCart(@PathVariable(value = "id") int id, Model model, HttpSession session) {
 		List<ProductCart> cart = (List<ProductCart>) session.getAttribute("cart");
 		for (int i = 0; i < cart.size(); i++) {

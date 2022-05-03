@@ -25,12 +25,10 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.banhngot.entity.TypeProduct;
 import com.banhngot.entity.Product;
-import com.banhngot.entity.ThongSo;
-import com.banhngot.entity.ThuongHieu;
+
 import com.banhngot.service.TypeProductService;
 import com.banhngot.service.ProductService;
-import com.banhngot.service.ThongSoService;
-import com.banhngot.service.ThuongHieuService;
+
 
 @Controller(value = "dienThoaiControllerOfAdmin")
 @RequestMapping("/admin")
@@ -42,11 +40,7 @@ public class ProductController {
 	@Autowired
 	private TypeProductService danhMucService;
 
-	@Autowired
-	private ThongSoService thongSoService;
 
-	@Autowired
-	private ThuongHieuService thuongHieuService;
 
 	@GetMapping("/product/list")
 	public String listProduct(Model theModel, @RequestParam(value = "page", defaultValue = "1") int page) {
@@ -58,12 +52,12 @@ public class ProductController {
 		return "admin/product";
 	}
 
-	@GetMapping("/product/delete")
-	public String deleteProduct(@RequestParam("productId") int id, @RequestParam("productDetailId") int detailId) {
-		thongSoService.deleteThongSo(detailId);
-		dienThoaiService.deleteProduct(id);
-		return "redirect:/admin/product/list";
-	}
+//	@GetMapping("/product/delete")
+//	public String deleteProduct(@RequestParam("productId") int id, @RequestParam("productDetailId") int detailId) {
+//		thongSoService.deleteThongSo(detailId);
+//		dienThoaiService.deleteProduct(id);
+//		return "redirect:/admin/product/list";
+//	}
 
 	@GetMapping("/product/showFormEdit")
 	private String showFormEditProduct(@RequestParam("productId") int id, Model theModel, HttpSession session) {
@@ -120,11 +114,11 @@ public class ProductController {
 				product.setHinhAnh(photos);
 				session.removeValue("photos");
 			}
-			ThongSo ts = thongSoService.getThongSo(Integer.parseInt(detail_id));
+//			ThongSo ts = thongSoService.getThongSo(Integer.parseInt(detail_id));
 //			product.setThongSo(ts);
 			TypeProduct cate = danhMucService.getDanhMuc(id);
 			product.setDanhMuc(cate);
-			ThuongHieu thuongHieu = thuongHieuService.getTheoTen(cate.getTenDanhMuc().trim());
+//			ThuongHieu thuongHieu = thuongHieuService.getTheoTen(cate.getTenDanhMuc().trim());
 //			product.setThuongHieu(thuongHieu);
 			dienThoaiService.saveProduct(product);
 			return "redirect:/admin/product/list";

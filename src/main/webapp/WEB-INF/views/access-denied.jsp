@@ -51,7 +51,7 @@
             <h2>403</h2>
             <span>Bạn không có quyền truy cập!</span>
         
-            <a href="${pageContext.request.contextPath}/dienthoai/danhsach"> Trở về trang chủ</a>
+            <a href="${pageContext.request.contextPath}/product/danhsach"> Trở về trang chủ</a>
           </div>
         </div>
       </div>
