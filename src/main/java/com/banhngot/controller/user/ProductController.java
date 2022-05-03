@@ -39,19 +39,18 @@ public class ProductController {
 	
 	//@RequestParam(value="search", defaultValue = "") String search là nhận search từ bên jsp
 	@GetMapping("/danhsach")
-	public String listCustomers(Model theModel, @RequestParam(required = false) String sort,  @RequestParam(value = "page", defaultValue = "1") int page,
-			@RequestParam(value="search", defaultValue = "") String search,@RequestParam(value="memory", defaultValue = "") String memory) {
+	public String listCustomers(Model theModel, @RequestParam(required = false) String sort,
+			@RequestParam(value="search", defaultValue = "") String search) {
 		List<Product> listProduct = new ArrayList<Product>();
 		if (sort!=null) {
-			listProduct = productService.getListProductCoSapXep(sort,search,memory);
+			listProduct = productService.getListProductCoSapXep(sort,search);
 		}else {
-			listProduct = productService.getListProductCoSapXep("desc",search,memory);
+			listProduct = productService.getListProductCoSapXep("desc",search);
 		}
-		theModel.addAttribute("memory",memory);
+
 		theModel.addAttribute("search",search);
 		theModel.addAttribute("sort",sort);
-		theModel.addAttribute("page", page);
-		theModel.addAttribute("products", productService.getListProductTheoPage(page,12, listProduct));
+		theModel.addAttribute("products", productService.getListProduct(listProduct));
 		theModel.addAttribute("total", listProduct.size());	
 		theModel.addAttribute("dms", danhMucService.getListDanhMuc());
 		System.out.println(search);
@@ -75,36 +74,16 @@ public class ProductController {
 		session.setAttribute("iddanhmuc", danhMucId);
 		return "redirect:/product/danhmuc";
 	}
-//	
-//	@GetMapping("/chitietproduct")
-//	public String chitietproduct(Model model, HttpSession session) {
-//		Product dt = (Product) session.getAttribute("product");
-//		List<Product> dts=productService.getListProductLienQuan(dt.getDanhMuc().getTenDanhMuc());
-//		model.addAttribute("dts", dts);
-//		model.addAttribute("dt", dt);
-//		model.addAttribute("binhluans", binhLuanService.getListBinhLuanByIdProduct(dt.getId()));
-//		model.addAttribute("binhluan", new BinhLuan());
-////		model.addAttribute("dtbythuonghieu", productService.getListProductTheoThuongHieu(dt.getThuongHieu().getId()));
-//		return "user/chitietproduct";
-//	}
-	@RequestMapping(value = "/laychitiet/{id}", method = RequestMethod.GET)
-	public String laychitiethoadon(Model model,@PathVariable(value = "id")int id,HttpSession session) {
-		Product dt = productService.getProduct(id);
-		session.setAttribute("product", dt);
-		session.setAttribute("size", dt.getHinhAnh().size());
-		return "redirect:/product/chitietproduct";
-	}
+
 	@GetMapping("/search")
 	public String searchProduct(Model model, @RequestParam(required = false) String searchName,  @RequestParam(value = "page", defaultValue = "1") int page) {
 		List<Product> dts = productService.getListProductSearch(searchName);
 		if (dts.size()>0) {
+			model.addAttribute("search",searchName);
 			model.addAttribute("page", page);
-			model.addAttribute("products", productService.getListProductTheoPage(page,8, dts));
-//			model.addAttribute("total", dts.size());
-//			model.addAttribute("ths", productService.getListThuongHieu());
+			model.addAttribute("products", productService.getListProduct(dts));
 			return "user/danhsach-product2";
 		}else {
-			System.out.println("không có điện thoại!");
 			return "user/notfoundproduct";
 		}
 	}

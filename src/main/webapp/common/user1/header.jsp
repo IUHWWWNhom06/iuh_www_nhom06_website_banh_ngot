@@ -56,7 +56,7 @@
 				<i class="fas fa-search" sstyle="color: black;"></i>
 			</label>
 			<div class="header__logo hide-on-tablet">
-				<a href="${pageContext.request.contextPath}/dienthoai/danhsach"
+				<a href="${pageContext.request.contextPath}/product/danhsach"
 					class="head_logo-link"> <img
 					src="${resources}/user1/img/qmobile.png"
 					class="header__logo-img ml-24" alt="Qmobile">
@@ -64,14 +64,11 @@
 			</div>
 			<input type="checkbox" hidden name="" id="mobile-search-checkbox"
 				class="mobile__check-header">
-			<form:form class="header__search form-inline" action="${pageContext.request.contextPath}/dienthoai/danhsach" method="GET">
+			<form:form class="header__search form-inline" action="${pageContext.request.contextPath}/product/search" method="GET">
 				<div class="header__search-input-wrap">
-									
-						<input type="hidden" value="${page}" name="page"/>
 						<input type="hidden" value="${sort}" name="sort"/>
-						<input type="text" class="header__search-input" name="search"
-						placeholder="Tìm sản phẩm, thương hiệu và tên shop" value="${param.search }">
-					
+						<input type="text" class="header__search-input" name="searchName"
+						placeholder="Tìm tên bánh" value="${param.search }">			
 				</div>
 
 				<button class="header__search-btn" value="Search"> 
@@ -117,7 +114,7 @@
 	<ul class="list-inline pb-3">
 		<li class="list-inline-item"><a
 			class="text-decoration-none fs14 mr-3 text-deco text-dark text-uppercase opacity05 px-3 py-2 font-weight-bold"
-			href="${pageContext.request.contextPath}/dienthoai/danhsach">Trang chủ</a></li>
+			href="${pageContext.request.contextPath}/product/danhsach">Trang chủ</a></li>
 		<li class="list-inline-item"><a
 			class="text-decoration-none fs14 mr-3 text-deco text-dark text-uppercase opacity05 px-3 py-2 font-weight-bold"
 			href="${pageContext.request.contextPath}/user/gioHang">Giỏ hàng</a></li>
