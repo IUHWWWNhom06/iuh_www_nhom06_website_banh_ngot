@@ -116,7 +116,7 @@
 											</div>
 										</c:if>
 									</a> <a class="btn btn-success btn-block fs14"
-										href="${pageContext.request.contextPath}/user/themvaogiohang/${item.id}">
+										href="${pageContext.request.contextPath}/user/themvaocart/${item.id}">
 										Thêm vào giỏ hàng </a>
 								</div>
 							</c:forEach>

@@ -54,7 +54,7 @@ public class ProductController {
 		theModel.addAttribute("total", listProduct.size());	
 		theModel.addAttribute("dms", danhMucService.getListDanhMuc());
 		System.out.println(search);
-		return "user/danhsach-dienthoai2";
+		return "user/danhsach-product2";
 	}
 	
 	@GetMapping("/danhmuc")

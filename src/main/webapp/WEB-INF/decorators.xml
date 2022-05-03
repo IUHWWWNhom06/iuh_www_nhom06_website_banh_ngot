@@ -28,8 +28,8 @@
 	<decorator name="search" page="user1.jsp">
 		<pattern>/product/search</pattern>
 	</decorator>
-	<decorator name="user-giohang" page="user1.jsp">
-		<pattern>/user/gioHang</pattern>
+	<decorator name="user-cart" page="user1.jsp">
+		<pattern>/user/cart</pattern>
 	</decorator>
 	<decorator name="user-dangnhap" page="user1.jsp">
 		<pattern>/user/formDangNhap</pattern>

@@ -18,7 +18,7 @@
 			<thead>
 				<tr>
 					<td style="text-align: left;"><a
-						href="${pageContext.request.contextPath}/dienthoai/danhsach">
+						href="${pageContext.request.contextPath}/product/danhsach">
 							<button type="button" class="btn btn-success fs14">
 								<i class="fa fa-angle-left"></i> Tiếp tục mua hàng
 							</button>
@@ -39,11 +39,11 @@
 							<div class="row ">
 								<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 ">
 									<img
-										src="${resources}/user/images/SanPham/${ds.dienThoai.anhURL}"
+										src="${resources}/user/images/SanPham/${ds.product.anhURL}"
 										alt="" class="" style="width: 100%">
 									<div style="text-align: center; margin-top: 10%">
 										<a
-											href="${pageContext.request.contextPath}/user/xoadienthoaigiohang/${ds.dienThoai.id}"><button
+											href="${pageContext.request.contextPath}/user/xoaproductcart/${ds.product.id}"><button
 												class="btn btn-danger btn-sm">
 												<i class="fa fa-trash"></i>
 											</button> </a>
@@ -52,21 +52,7 @@
 								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 mt-2"
 									style="margin-top: 10%; font-size: 20px">
 									<div>
-										<b>Điện thoại ${ds.dienThoai.tenDT}
-											${ds.dienThoai.thongSo.boNho} - ${ds.dienThoai.thongSo.ram}</b>
-									</div>
-									<div>
-										Màu : <b>${ds.dienThoai.mauSac}</b>
-									</div>
-									<div>
-										Xuất xứ: <b>${ds.dienThoai.thuongHieu.xuatXu }</b>
-									</div>
-									<div>
-										Giảm giá: <b><fmt:formatNumber type="number" pattern="#,#"
-												value="${ds.dienThoai.giamGia}" />%</b>
-									</div>
-									<div>
-										Thuế: <b>${ds.dienThoai.thue }%</b>
+										<b>Điện thoại ${ds.product.name}</b>
 									</div>
 								</div>
 							</div>
@@ -74,31 +60,31 @@
 						<td>
 							<div style="text-align: center; color: red; font-size: 25px">
 								<fmt:formatNumber type="number" pattern="#,###,###.##₫"
-									value="${ds.dienThoai.giaDT}" />
+									value="${ds.product.giaDT}" />
 							</div>
 							<div style="text-align: center; margin-top: 10px">												
 								<c:if test="${ds.soLuong >= 2}">
-									<a href="${pageContext.request.contextPath }/user/giamsoluong/${ds.dienThoai.id}">
+									<a href="${pageContext.request.contextPath }/user/giamsoluong/${ds.product.id}">
 										<button class="btn btn-warning fs16"><b>-</b></button>
 									</a>
 								</c:if>
 								<c:if test="${ds.soLuong == 1}">
-									<a href="${pageContext.request.contextPath}/user/xoadienthoaigiohang/${ds.dienThoai.id}">
+									<a href="${pageContext.request.contextPath}/user/xoaproductcart/${ds.product.id}">
 										<button class="btn btn-warning fs16"><b>-</b></button>
 									</a>
 								</c:if>	
 								&nbsp; 
 									<span class="fs14">${ds.soLuong} </span>
 								&nbsp;
-								<c:if test="${ds.soLuong >= ds.dienThoai.soLuongTon}">
+								<c:if test="${ds.soLuong >= ds.product.soLuongTon}">
 									<a onclick="return confirm('Không đủ số lượng trong kho!');">
 										<button	class="btn btn-warning fs16" style="opacity: 0.5">
 											<b>+</b>
 										</button>
 									</a>
 								</c:if>
-								<c:if test="${ds.soLuong < ds.dienThoai.soLuongTon}">
-								<a href="${pageContext.request.contextPath }/user/tangsoluong/${ds.dienThoai.id}"><button
+								<c:if test="${ds.soLuong < ds.product.soLuongTon}">
+								<a href="${pageContext.request.contextPath }/user/tangsoluong/${ds.product.id}"><button
 											class="btn btn-warning fs16">
 											<b>+</b>
 										</button></a>

@@ -48,7 +48,7 @@
 			
 			<li class="nav-item position-relative"><a
 				class="nav-link position-relative"
-				href="${pageContext.request.contextPath}/user/gioHang"><i
+				href="${pageContext.request.contextPath}/user/cart"><i
 					class="fa fa-shopping-cart"></i></a></li>
 			<li class="nav-item position-relative"><a
 				class="nav-link position-relative" href="#"> <i
