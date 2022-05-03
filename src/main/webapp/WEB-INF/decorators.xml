@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <decorators defaultdir="/decorators">
 
-	<decorator name="danhsach-dienthoai" page="user1.jsp">
-		<pattern>/dienthoai/danhsach</pattern>
+	<decorator name="danhsach-product2" page="user1.jsp">
+		<pattern>/product/danhsach</pattern>
 	</decorator>
 
 	<decorator name="danhmuc" page="user1.jsp">
-		<pattern>/dienthoai/danhmuc</pattern>
+		<pattern>/product/danhmuc</pattern>
 	</decorator>
 	
 	<decorator name="timtaikhoan" page="user1.jsp">
@@ -26,11 +26,7 @@
 	</decorator>
 	
 	<decorator name="search" page="user1.jsp">
-		<pattern>/dienthoai/search</pattern>
-	</decorator>
-
-	<decorator name="chitietdienthoai" page="user1.jsp">
-		<pattern>/dienthoai/chitietdienthoai</pattern>
+		<pattern>/product/search</pattern>
 	</decorator>
 	<decorator name="user-giohang" page="user1.jsp">
 		<pattern>/user/gioHang</pattern>

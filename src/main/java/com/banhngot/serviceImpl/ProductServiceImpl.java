@@ -39,42 +39,16 @@ public class ProductServiceImpl implements ProductService {
 		return productDAO.getListProduct();
 	}
 
-//	@Override
-//	@Transactional
-//	public List<Product> getListTheoTen(String tenDT) {
-//		// TODO Auto-generated method stub
-//		return productDAO.getListTheoTen(tenDT);
-//	}
-//
-//	@Override
-//	public List<Product> getProductGiamGia() {
-//		// TODO Auto-generated method stub
-//		return productDAO.getListProductGiamGia();
-//	}
-//
-//	@Override
-//	public List<Product> getDienTHoaiBanChay() {
-//		// TODO Auto-generated method stub
-//		return productDAO.getListProductBanChay();
-//	}
-//
-//	@Override
-//	@Transactional
-//	public List<ThuongHieu> getListThuongHieu() {
-//		// TODO Auto-generated method stub
-//		return productDAO.getListThuongHieu();
-//	}
-
 	@Transactional
 	@Override
-	public List<Product> getListProductTheoPage(int page, int element, List<Product> list) {
+	public List<Product> getListProduct(List<Product> list) {
 		// TODO Auto-generated method stub
-		return productDAO.getListProductTheoPage(page,element, list);
+		return productDAO.getListProduct(list);
 	}
 	@Override
-	public List<Product> getListProductCoSapXep(String sort,String searchName,String memory) {
+	public List<Product> getListProductCoSapXep(String sort,String searchName) {
 		// TODO Auto-generated method stub
-		return productDAO.getListProductCoSapXep(sort,searchName,memory);
+		return productDAO.getListProductCoSapXep(sort,searchName);
 	}
 
 	@Override
@@ -90,10 +64,4 @@ public class ProductServiceImpl implements ProductService {
 		return productDAO.getListProductLienQuan(tenDM);
 
 	}
-//	@Override
-//	public List<Product> getListProductTheoThuongHieu(int idThuongHieu) {
-//		// TODO Auto-generated method stub
-//		return productDAO.getListProductTheoThuongHieu(idThuongHieu);
-//
-//	}
 }

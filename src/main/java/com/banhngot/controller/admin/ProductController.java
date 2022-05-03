@@ -52,7 +52,7 @@ public class ProductController {
 	public String listProduct(Model theModel, @RequestParam(value = "page", defaultValue = "1") int page) {
 		List<Product> productList = dienThoaiService.getListProduct();
 		theModel.addAttribute("page", page);
-		theModel.addAttribute("productList", dienThoaiService.getListProductTheoPage(page, 7, productList));
+//		theModel.addAttribute("productList", dienThoaiService.getListProductTheoPage(page, 7, productList));
 		theModel.addAttribute("total", productList.size());
 
 		return "admin/product";
