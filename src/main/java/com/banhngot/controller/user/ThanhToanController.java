@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.banhngot.entity.ChiTietHoaDon;
 import com.banhngot.entity.Product;
-import com.banhngot.entity.DienThoaiGioHang;
+import com.banhngot.entity.ProductCart;
 import com.banhngot.entity.HoaDon;
 import com.banhngot.entity.NguoiDung;
 import com.banhngot.entity.PhuongThucThanhToan;
@@ -55,7 +55,7 @@ public class ThanhToanController {
 
 	@GetMapping(value = "/showFormNguoiNhan")
 	public String showFormNguoiNhan(Model model, HttpSession session) {
-		List<DienThoaiGioHang> cart = (List<DienThoaiGioHang>) session.getAttribute("cart");
+		List<ProductCart> cart = (List<ProductCart>) session.getAttribute("cart");
 		if (cart == null) {
 			session.setAttribute("errorcartnull", "Vui lòng chọn sản phẩm vào giỏ hàng");
 			return "redirect:/user/gioHang";
@@ -96,17 +96,17 @@ public class ThanhToanController {
 			hoaDonService.saveHoaDon(nguoiNhan);
 			
 			DecimalFormat format = new DecimalFormat("###,###.## vnđ");
-			List<DienThoaiGioHang> cart = (List<DienThoaiGioHang>) session.getAttribute("cart");
+			List<ProductCart> cart = (List<ProductCart>) session.getAttribute("cart");
 			String noiDung="";
-			for (DienThoaiGioHang dt : cart) {	
-				noiDung+="Điện thoại: "+dt.getDienThoai().getTenDT()+" "
-						+ ", màu: " +" . "+"Đơn giá: "+format.format(dt.getDienThoai().getGiaDT())+" "+" Số lượng: "+dt.getSoLuong()+" \n";
-				chiTietHoaDonService.addChiTietHoaDon(dt.getDienThoai().getId(), nguoiNhan.getId(), dt.getSoLuong());
-				Product capNhatSoLuong=dt.getDienThoai();
+			for (ProductCart dt : cart) {	
+				noiDung+="Điện thoại: "+dt.getProduct().getName()+" "
+						+ ", màu: " +" . "+"Đơn giá: "+format.format(dt.getProduct().getGiaDT())+" "+" Số lượng: "+dt.getSoLuong()+" \n";
+				chiTietHoaDonService.addChiTietHoaDon(dt.getProduct().getId(), nguoiNhan.getId(), dt.getSoLuong());
+				Product capNhatSoLuong=dt.getProduct();
 				int soLuong=0;
-				soLuong= dt.getDienThoai().getSoLuongTon()-dt.getSoLuong();
+				soLuong= dt.getProduct().getSoLuongTon()-dt.getSoLuong();
 				capNhatSoLuong.setSoLuongTon(soLuong);
-				dienThoaiService.saveDienThoai(capNhatSoLuong);
+				dienThoaiService.saveProduct(capNhatSoLuong);
 			}
 			String thongTinNguoiNhan = 
 					"- Họ và tên: "+nguoiNhan.getHoTenKhachHang()+"\n"+

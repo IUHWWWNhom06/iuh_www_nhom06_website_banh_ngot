@@ -16,43 +16,43 @@ import org.springframework.web.bind.annotation.RestController;
 import com.banhngot.entity.Product;
 import com.banhngot.service.ProductService;
 
-@RestController(value = "dienThoaiRestControllerOfAdmin")
+@RestController(value = "productRestControllerOfAdmin")
 @RequestMapping("/admin/product/api")
-public class DienThoaiRestController {
+public class ProductRestController {
 	@Autowired
-	private ProductService dienThoaiService;
+	private ProductService productService;
 
 //	@GetMapping("/product")
-//	public List<Product> getDienThoais() {
-//		return dienThoaiService.getDienTHoaiBanChay();
+//	public List<Product> getProducts() {
+//		return productService.getDienTHoaiBanChay();
 //	}
 
 	@GetMapping("/products/{id}")
-	public Product getDienThoai(@PathVariable int id) {
-		return dienThoaiService.getDienThoai(id);
+	public Product getProduct(@PathVariable int id) {
+		return productService.getProduct(id);
 	}
 
 //	@GetMapping("/products")
 //	public List<Product> getListTheoTen(@RequestParam("tenDT") String tenDT) {
-//		return dienThoaiService.getListTheoTen(tenDT);
+//		return productService.getListTheoTen(tenDT);
 //	}
 
 	@PostMapping("/products")
-	public Product themDienThoai(@RequestBody Product dienThoai) {
-		dienThoai.setId(0);
-		dienThoaiService.saveDienThoai(dienThoai);
-		return dienThoai;
+	public Product themProduct(@RequestBody Product product) {
+		product.setId(0);
+		productService.saveProduct(product);
+		return product;
 	}
 
 	@PutMapping("/products")
-	public Product suaDienThoai(@RequestBody Product dienThoai) {
-		dienThoaiService.saveDienThoai(dienThoai);
-		return dienThoai;
+	public Product suaProduct(@RequestBody Product product) {
+		productService.saveProduct(product);
+		return product;
 	}
 
 	@DeleteMapping("/products/{id}")
-	public void xoaDienThoai(@PathVariable int id) {
-		dienThoaiService.deleteDienThoai(id);
+	public void xoaProduct(@PathVariable int id) {
+		productService.deleteProduct(id);
 	}
 
 }

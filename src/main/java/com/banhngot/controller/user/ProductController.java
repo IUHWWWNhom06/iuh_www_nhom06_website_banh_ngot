@@ -24,11 +24,11 @@ import com.banhngot.service.BinhLuanService;
 import com.banhngot.service.TypeProductService;
 import com.banhngot.service.ProductService;
 
-@Controller(value = "dienThoaiControllerOfUser")
-@RequestMapping("/dienthoai")
+@Controller(value = "productControllerOfUser")
+@RequestMapping("/product")
 public class ProductController { 
 	@Autowired
-	private ProductService dienThoaiService;
+	private ProductService productService;
 	
 	@Autowired
 	private BinhLuanService binhLuanService;
@@ -41,28 +41,28 @@ public class ProductController {
 	@GetMapping("/danhsach")
 	public String listCustomers(Model theModel, @RequestParam(required = false) String sort,  @RequestParam(value = "page", defaultValue = "1") int page,
 			@RequestParam(value="search", defaultValue = "") String search,@RequestParam(value="memory", defaultValue = "") String memory) {
-		List<Product> listDienThoai = new ArrayList<Product>();
+		List<Product> listProduct = new ArrayList<Product>();
 		if (sort!=null) {
-			listDienThoai = dienThoaiService.getListDienThoaiCoSapXep(sort,search,memory);
+			listProduct = productService.getListProductCoSapXep(sort,search,memory);
 		}else {
-			listDienThoai = dienThoaiService.getListDienThoaiCoSapXep("desc",search,memory);
+			listProduct = productService.getListProductCoSapXep("desc",search,memory);
 		}
 		theModel.addAttribute("memory",memory);
 		theModel.addAttribute("search",search);
 		theModel.addAttribute("sort",sort);
 		theModel.addAttribute("page", page);
-		theModel.addAttribute("dienthoais", dienThoaiService.getListDienThoaiTheoPage(page,12, listDienThoai));
-		theModel.addAttribute("total", listDienThoai.size());	
+		theModel.addAttribute("products", productService.getListProductTheoPage(page,12, listProduct));
+		theModel.addAttribute("total", listProduct.size());	
 		theModel.addAttribute("dms", danhMucService.getListDanhMuc());
 		System.out.println(search);
-		return "user/danhsach-dienthoai2";
+		return "user/danhsach-product2";
 	}
 	
 	@GetMapping("/danhmuc")
 	public String danhmuc(Model theModel, HttpSession session) {
 		List<Product> dts = (List<Product>) session.getAttribute("dts");
 		if (dts == null) {
-			dts = dienThoaiService.getListDienThoaiLienQuan(danhMucService.getListDanhMuc().get(0).getTenDanhMuc());
+			dts = productService.getListProductLienQuan(danhMucService.getListDanhMuc().get(0).getTenDanhMuc());
 		}
 		theModel.addAttribute("dts", dts);
 		theModel.addAttribute("iddanhmuc", session.getAttribute("iddanhmuc"));
@@ -70,54 +70,54 @@ public class ProductController {
 		return "user/danhmuc";
 	}
 	@RequestMapping(value = "/danhmuc/{danhMucId}", method = RequestMethod.GET)
-	public String getDienThoaiTheoDanhMuc(Model model,@PathVariable(value = "danhMucId")int danhMucId,HttpSession session) {
-		session.setAttribute("dts", dienThoaiService.getListDienThoaiLienQuan(danhMucService.getDanhMuc(danhMucId).getTenDanhMuc()));
+	public String getProductTheoDanhMuc(Model model,@PathVariable(value = "danhMucId")int danhMucId,HttpSession session) {
+		session.setAttribute("dts", productService.getListProductLienQuan(danhMucService.getDanhMuc(danhMucId).getTenDanhMuc()));
 		session.setAttribute("iddanhmuc", danhMucId);
-		return "redirect:/dienthoai/danhmuc";
+		return "redirect:/product/danhmuc";
 	}
 //	
-//	@GetMapping("/chitietdienthoai")
-//	public String chitietdienthoai(Model model, HttpSession session) {
-//		Product dt = (Product) session.getAttribute("dienthoai");
-//		List<Product> dts=dienThoaiService.getListDienThoaiLienQuan(dt.getDanhMuc().getTenDanhMuc());
+//	@GetMapping("/chitietproduct")
+//	public String chitietproduct(Model model, HttpSession session) {
+//		Product dt = (Product) session.getAttribute("product");
+//		List<Product> dts=productService.getListProductLienQuan(dt.getDanhMuc().getTenDanhMuc());
 //		model.addAttribute("dts", dts);
 //		model.addAttribute("dt", dt);
-//		model.addAttribute("binhluans", binhLuanService.getListBinhLuanByIdDienThoai(dt.getId()));
+//		model.addAttribute("binhluans", binhLuanService.getListBinhLuanByIdProduct(dt.getId()));
 //		model.addAttribute("binhluan", new BinhLuan());
-////		model.addAttribute("dtbythuonghieu", dienThoaiService.getListDienThoaiTheoThuongHieu(dt.getThuongHieu().getId()));
-//		return "user/chitietdienthoai";
+////		model.addAttribute("dtbythuonghieu", productService.getListProductTheoThuongHieu(dt.getThuongHieu().getId()));
+//		return "user/chitietproduct";
 //	}
 	@RequestMapping(value = "/laychitiet/{id}", method = RequestMethod.GET)
 	public String laychitiethoadon(Model model,@PathVariable(value = "id")int id,HttpSession session) {
-		Product dt = dienThoaiService.getDienThoai(id);
-		session.setAttribute("dienthoai", dt);
+		Product dt = productService.getProduct(id);
+		session.setAttribute("product", dt);
 		session.setAttribute("size", dt.getHinhAnh().size());
-		return "redirect:/dienthoai/chitietdienthoai";
+		return "redirect:/product/chitietproduct";
 	}
 	@GetMapping("/search")
-	public String searchDienThoai(Model model, @RequestParam(required = false) String searchName,  @RequestParam(value = "page", defaultValue = "1") int page) {
-		List<Product> dts = dienThoaiService.getListDienThoaiSearch(searchName);
+	public String searchProduct(Model model, @RequestParam(required = false) String searchName,  @RequestParam(value = "page", defaultValue = "1") int page) {
+		List<Product> dts = productService.getListProductSearch(searchName);
 		if (dts.size()>0) {
 			model.addAttribute("page", page);
-			model.addAttribute("dienthoais", dienThoaiService.getListDienThoaiTheoPage(page,8, dts));
+			model.addAttribute("products", productService.getListProductTheoPage(page,8, dts));
 //			model.addAttribute("total", dts.size());
-//			model.addAttribute("ths", dienThoaiService.getListThuongHieu());
-			return "user/danhsach-dienthoai2";
+//			model.addAttribute("ths", productService.getListThuongHieu());
+			return "user/danhsach-product2";
 		}else {
 			System.out.println("không có điện thoại!");
-			return "user/notfounddienthoai";
+			return "user/notfoundproduct";
 		}
 	}
 	@RequestMapping(value = "/savebinhluan", method = RequestMethod.POST)
 	public String themBinhLuan(@ModelAttribute("binhluan") BinhLuan binhLuan,HttpSession session) {
 		if (!binhLuan.getNoiDung().equals("")||!binhLuan.getTenBinhLuan().equals("")) {
-			Product dt =(Product) session.getAttribute("dienthoai");
+			Product dt =(Product) session.getAttribute("product");
 			binhLuan.setDienThoai(dt);
 			binhLuan.setId(null);
 			binhLuan.setNgay(LocalDateTime.now());
 			binhLuanService.themBinhLuan(binhLuan);
 		}
 		
-		return "redirect:/dienthoai/chitietdienthoai";
+		return "redirect:/product/chitietproduct";
 	}
 }

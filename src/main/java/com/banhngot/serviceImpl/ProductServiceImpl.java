@@ -14,86 +14,86 @@ import com.banhngot.service.ProductService;
 @Service
 public class ProductServiceImpl implements ProductService {
 	@Autowired
-	private ProductDAO dienThoaiDAO;
+	private ProductDAO productDAO;
 
 	@Override
 	@Transactional
-	public void saveDienThoai(Product dt) {
-		dienThoaiDAO.saveDienThoai(dt);
+	public void saveProduct(Product dt) {
+		productDAO.saveProduct(dt);
 	}
 
 	@Override
 	@Transactional
-	public void deleteDienThoai(int id) {
-		dienThoaiDAO.deleteDienThoai(id);
+	public void deleteProduct(int id) {
+		productDAO.deleteProduct(id);
 	}
 
 	@Override
-	public Product getDienThoai(int id) {
-		return dienThoaiDAO.getDienThoai(id);
+	public Product getProduct(int id) {
+		return productDAO.getProduct(id);
 	}
 
 	@Override
 	@Transactional
-	public List<Product> getListDienThoai() {
-		return dienThoaiDAO.getListDienThoai();
+	public List<Product> getListProduct() {
+		return productDAO.getListProduct();
 	}
 
 //	@Override
 //	@Transactional
 //	public List<Product> getListTheoTen(String tenDT) {
 //		// TODO Auto-generated method stub
-//		return dienThoaiDAO.getListTheoTen(tenDT);
+//		return productDAO.getListTheoTen(tenDT);
 //	}
 //
 //	@Override
-//	public List<Product> getDienThoaiGiamGia() {
+//	public List<Product> getProductGiamGia() {
 //		// TODO Auto-generated method stub
-//		return dienThoaiDAO.getListDienThoaiGiamGia();
+//		return productDAO.getListProductGiamGia();
 //	}
 //
 //	@Override
 //	public List<Product> getDienTHoaiBanChay() {
 //		// TODO Auto-generated method stub
-//		return dienThoaiDAO.getListDienThoaiBanChay();
+//		return productDAO.getListProductBanChay();
 //	}
 //
 //	@Override
 //	@Transactional
 //	public List<ThuongHieu> getListThuongHieu() {
 //		// TODO Auto-generated method stub
-//		return dienThoaiDAO.getListThuongHieu();
+//		return productDAO.getListThuongHieu();
 //	}
 
 	@Transactional
 	@Override
-	public List<Product> getListDienThoaiTheoPage(int page, int element, List<Product> list) {
+	public List<Product> getListProductTheoPage(int page, int element, List<Product> list) {
 		// TODO Auto-generated method stub
-		return dienThoaiDAO.getListDienThoaiTheoPage(page,element, list);
+		return productDAO.getListProductTheoPage(page,element, list);
 	}
 	@Override
-	public List<Product> getListDienThoaiCoSapXep(String sort,String searchName,String memory) {
+	public List<Product> getListProductCoSapXep(String sort,String searchName,String memory) {
 		// TODO Auto-generated method stub
-		return dienThoaiDAO.getListDienThoaiCoSapXep(sort,searchName,memory);
+		return productDAO.getListProductCoSapXep(sort,searchName,memory);
 	}
 
 	@Override
-	public List<Product> getListDienThoaiSearch(String searchName) {
+	public List<Product> getListProductSearch(String searchName) {
 		// TODO Auto-generated method stub
-		return dienThoaiDAO.getListDienThoaiSearch(searchName);
+		return productDAO.getListProductSearch(searchName);
 	}
 
 	@Transactional
 	@Override
-	public List<Product> getListDienThoaiLienQuan(String tenDM) {
+	public List<Product> getListProductLienQuan(String tenDM) {
 		// TODO Auto-generated method stub
-		return dienThoaiDAO.getListDienThoaiLienQuan(tenDM);
+		return productDAO.getListProductLienQuan(tenDM);
 
 	}
 //	@Override
-//	public List<Product> getListDienThoaiTheoThuongHieu(int idThuongHieu) {
+//	public List<Product> getListProductTheoThuongHieu(int idThuongHieu) {
 //		// TODO Auto-generated method stub
-//		return dienThoaiDAO.getListDienThoaiTheoThuongHieu(idThuongHieu);
+//		return productDAO.getListProductTheoThuongHieu(idThuongHieu);
 //
 //	}
 }

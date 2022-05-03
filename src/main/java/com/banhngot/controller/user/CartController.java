@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.banhngot.entity.DienThoaiGioHang;
+import com.banhngot.entity.ProductCart;
 import com.banhngot.service.ProductService;
 
-@Controller(value = "GioHangControllerOfUser")
+@Controller(value = "CartControllerOfUser")
 @RequestMapping("/user")
-public class GioHangController {
+public class CartController {
 	@Autowired
-	private ProductService dienThoaiService;
+	private ProductService productService;
 
-	@GetMapping(value = "/gioHang")
-	public String showGioHang(HttpSession session, Model model, Principal principal) {
-		List<DienThoaiGioHang> cart = (List<DienThoaiGioHang>) session.getAttribute("cart");
+	@GetMapping(value = "/cart")
+	public String showCart(HttpSession session, Model model, Principal principal) {
+		List<ProductCart> cart = (List<ProductCart>) session.getAttribute("cart");
 		if (cart == null) {
 			session.setAttribute("tamtinh", 0);
 			session.setAttribute("giamgia", 0);
@@ -51,7 +51,7 @@ public class GioHangController {
 				return "user/giohang";
 			} else {
 				session.setAttribute("tinhtranggiohang", "");
-				capNhatGiaTrongGioHang(session);
+				capNhatGiaTrongCart(session);
 				try {
 					model.addAttribute("tenDangNhap", principal.getName());
 				} catch (Exception e) {
@@ -66,16 +66,16 @@ public class GioHangController {
 	@RequestMapping(value = "/themvaogiohang/{id}", method = RequestMethod.GET)
 	public String themVaoGioGang(@PathVariable(value = "id") int id, Model model, HttpSession session) {
 		if (session.getAttribute("cart") == null) {
-			List<DienThoaiGioHang> cart = new ArrayList<DienThoaiGioHang>();
-			DienThoaiGioHang dienThoaiGioHang = new DienThoaiGioHang(dienThoaiService.getDienThoai(id), 1);
-			cart.add(dienThoaiGioHang);
+			List<ProductCart> cart = new ArrayList<ProductCart>();
+			ProductCart productCart = new ProductCart(productService.getProduct(id), 1);
+			cart.add(productCart);
 			session.setAttribute("cart", cart);
 		} else {
-			List<DienThoaiGioHang> cart = (List<DienThoaiGioHang>) session.getAttribute("cart");
-			int index = kiemTraDienThoaiTonTaiTrongGioHang(id, session);
+			List<ProductCart> cart = (List<ProductCart>) session.getAttribute("cart");
+			int index = kiemTraProductTonTaiTrongCart(id, session);
 			if (index == -1) {
-				DienThoaiGioHang dienThoaiGioHang = new DienThoaiGioHang(dienThoaiService.getDienThoai(id), 1);
-				cart.add(dienThoaiGioHang);
+				ProductCart productCart = new ProductCart(productService.getProduct(id), 1);
+				cart.add(productCart);
 			} else {
 				int quantity = cart.get(index).getSoLuong() + 1;
 				cart.get(index).setSoLuong(quantity);
@@ -83,72 +83,72 @@ public class GioHangController {
 			session.setAttribute("cart", cart);
 		}
 		session.setAttribute("errorcartnull", "");
-		return "redirect:/user/gioHang";
+		return "redirect:/user/cart";
 	}
 
-	public void capNhatGiaTrongGioHang(HttpSession session) {
-		List<DienThoaiGioHang> cart = (List<DienThoaiGioHang>) session.getAttribute("cart");
+	public void capNhatGiaTrongCart(HttpSession session) {
+		List<ProductCart> cart = (List<ProductCart>) session.getAttribute("cart");
 		double giamGia = 0;
 		double tamTinh = 0;
 		double thue = 0;
-		for (DienThoaiGioHang dienThoaiGioHang : cart) {
+		for (ProductCart productCart : cart) {
 			thue++;
-			tamTinh += dienThoaiGioHang.getDienThoai().getGiaDT() * dienThoaiGioHang.getSoLuong();
-			giamGia += (tamTinh * dienThoaiGioHang.getDienThoai().getGiamGia()) / 100;
-//			thue += (tamTinh * dienThoaiGioHang.getDienThoai().getThue()) / 100;
+			tamTinh += productCart.getProduct().getGiaDT() * productCart.getSoLuong();
+			giamGia += (tamTinh * productCart.getProduct().getGiamGia()) / 100;
+//			thue += (tamTinh * productCart.getProduct().getThue()) / 100;
 			session.setAttribute("tamtinh", tamTinh);
 			session.setAttribute("giamgia", giamGia);
 			session.setAttribute("tongtien", tamTinh - giamGia + thue);
 		}
 	}
 
-	public int kiemTraDienThoaiTonTaiTrongGioHang(int id, HttpSession session) {
-		List<DienThoaiGioHang> cart = (List<DienThoaiGioHang>) session.getAttribute("cart");
+	public int kiemTraProductTonTaiTrongCart(int id, HttpSession session) {
+		List<ProductCart> cart = (List<ProductCart>) session.getAttribute("cart");
 		for (int i = 0; i < cart.size(); i++) {
-			if (cart.get(i).getDienThoai().getId() == id)
+			if (cart.get(i).getProduct().getId() == id)
 				return i;
 		}
 		return -1;
 	}
 
 	@RequestMapping(value = "/xoadienthoaigiohang/{id}")
-	public String xoaDienThoaiGioHang(@PathVariable(value = "id") int id, Model model, HttpSession session) {
-		List<DienThoaiGioHang> cart = (List<DienThoaiGioHang>) session.getAttribute("cart");
+	public String xoaProductCart(@PathVariable(value = "id") int id, Model model, HttpSession session) {
+		List<ProductCart> cart = (List<ProductCart>) session.getAttribute("cart");
 		for (int i = 0; i < cart.size(); i++) {
-			if (cart.get(i).getDienThoai().getId() == id) {
+			if (cart.get(i).getProduct().getId() == id) {
 				cart.remove(i);
 				break;
 			}
 		}
 		session.setAttribute("cart", cart);
-		capNhatGiaTrongGioHang(session);
+		capNhatGiaTrongCart(session);
 		session.setAttribute("errorcartnull", "");
-		return "redirect:/user/gioHang";
+		return "redirect:/user/cart";
 	}
 
 	@RequestMapping(value = "/tangsoluong/{id}")
 	public String tangSoLuong(@PathVariable(value = "id") int id, HttpSession session) {
-		List<DienThoaiGioHang> cart = (List<DienThoaiGioHang>) session.getAttribute("cart");
-		for (DienThoaiGioHang dienThoaiGioHang : cart) {
-			if (dienThoaiGioHang.getDienThoai().getId() == id) {
-				int quantity = dienThoaiGioHang.getSoLuong() + 1;
-				dienThoaiGioHang.setSoLuong(quantity);
+		List<ProductCart> cart = (List<ProductCart>) session.getAttribute("cart");
+		for (ProductCart productCart : cart) {
+			if (productCart.getProduct().getId() == id) {
+				int quantity = productCart.getSoLuong() + 1;
+				productCart.setSoLuong(quantity);
 			}
 		}
-		return "redirect:/user/gioHang";
+		return "redirect:/user/cart";
 
 	}
 
 	@RequestMapping(value = "/giamsoluong/{id}")
 	public String giamSoLuong(@PathVariable(value = "id") int id, HttpSession session) {
-		List<DienThoaiGioHang> cart = (List<DienThoaiGioHang>) session.getAttribute("cart");
-		for (DienThoaiGioHang dienThoaiGioHang : cart) {
-			if (dienThoaiGioHang.getDienThoai().getId() == id) {
-				int quantity = dienThoaiGioHang.getSoLuong() - 1;
-				dienThoaiGioHang.setSoLuong(quantity);
+		List<ProductCart> cart = (List<ProductCart>) session.getAttribute("cart");
+		for (ProductCart productCart : cart) {
+			if (productCart.getProduct().getId() == id) {
+				int quantity = productCart.getSoLuong() - 1;
+				productCart.setSoLuong(quantity);
 			}
 		}
-		return "redirect:/user/gioHang";
+		return "redirect:/user/cart";
 
 	}
 }

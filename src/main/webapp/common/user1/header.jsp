@@ -1,4 +1,4 @@
-<%@page import="com.banhngot.entity.DienThoaiGioHang"%>
+<%@page import="com.banhngot.entity.ProductCart"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -85,10 +85,11 @@
 					<i class="header__cart-icon fas fa-shopping-cart"
 						style="color: black;"></i></a>
 						
-						<%  List<DienThoaiGioHang> cart= (List<DienThoaiGioHang>) session.getAttribute("cart");
-							int count=0;
-							try{count=cart.size();}catch(Exception e){}						
-						%>		
+						<%
+												List<ProductCart> cart= (List<ProductCart>) session.getAttribute("cart");
+																	int count=0;
+																	try{count=cart.size();}catch(Exception e){}
+												%>		
 						<c:if test="${pageContext.request.userPrincipal.name!=null}">
 						 <span class="header__cart-notice"><%=count%></span>
 						</c:if>				

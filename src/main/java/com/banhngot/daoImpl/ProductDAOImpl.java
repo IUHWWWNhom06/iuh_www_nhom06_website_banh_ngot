@@ -25,7 +25,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Transactional
 	@Override
-	public void saveDienThoai(Product dt) {
+	public void saveProduct(Product dt) {
 		// TODO Auto-generated method stub
 		Session currentSession = sessionFactory.getCurrentSession();
 		currentSession.saveOrUpdate(dt);
@@ -33,7 +33,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Transactional
 	@Override
-	public void deleteDienThoai(int id) {
+	public void deleteProduct(int id) {
 		// TODO Auto-generated method stub
 		Session currentSession = sessionFactory.getCurrentSession();
 		Product dt = currentSession.get(Product.class, id);
@@ -42,7 +42,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Transactional
 	@Override
-	public Product getDienThoai(int id) {
+	public Product getProduct(int id) {
 		// TODO Auto-generated method stub
 		Session currentSession = sessionFactory.getCurrentSession();
 		Product dt = currentSession.get(Product.class, id);
@@ -51,7 +51,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Transactional
 	@Override
-	public List<Product> getListDienThoai() {
+	public List<Product> getListProduct() {
 		// TODO Auto-generated method stub
 		Session currentSession = sessionFactory.getCurrentSession();
 		Query<Product> theQuery = currentSession.createQuery("from Product", Product.class);
@@ -65,27 +65,27 @@ public class ProductDAOImpl implements ProductDAO {
 //		// TODO Auto-generated method stub
 //		Session currentSession = sessionFactory.getCurrentSession();
 //		Query<BanhNgot> theQuery = currentSession
-//				.createNativeQuery("select * from DienThoai where  like N'%" +  + "%'", BanhNgot.class);
+//				.createNativeQuery("select * from Product where  like N'%" +  + "%'", BanhNgot.class);
 //		List<BanhNgot> dts = theQuery.getResultList();
 //		return dts;
 //	}
 //
 //	@Transactional
 //	@Override
-//	public List<BanhNgot> getListDienThoaiGiamGia() {
+//	public List<BanhNgot> getListProductGiamGia() {
 //		// TODO Auto-generated method stub
 //		Session currentSession = sessionFactory.getCurrentSession();
-//		Query<BanhNgot> theQuery = currentSession.createQuery("from DienThoai where giamGia>0 ", BanhNgot.class);
+//		Query<BanhNgot> theQuery = currentSession.createQuery("from Product where giamGia>0 ", BanhNgot.class);
 //		List<BanhNgot> dts = theQuery.getResultList();
 //		return dts;
 //	}
 
 //	@Transactional
 //	@Override
-//	public List<BanhNgot> getListDienThoaiBanChay() {
+//	public List<BanhNgot> getListProductBanChay() {
 //		List<BanhNgot> dts = new ArrayList<BanhNgot>();
 //		Session currentSession = sessionFactory.getCurrentSession();
-//		String sql = "select id, SUM(ct.soLuong) as sum from DIENTHOAI as dt join CHITIETHOADON ct on dt.id = ct.id_DienThoai\r\n"
+//		String sql = "select id, SUM(ct.soLuong) as sum from DIENTHOAI as dt join CHITIETHOADON ct on dt.id = ct.id_Product\r\n"
 //				+ "group by dt.id,dt.\r\n" + "order by sum desc";
 //		List<?> list = currentSession.createNativeQuery(sql).getResultList();
 //		for (Object object : list) {
@@ -106,7 +106,7 @@ public class ProductDAOImpl implements ProductDAO {
 //	}
 
 	@Override
-	public List<Product> getListDienThoaiTheoPage(int page, int element, List<Product> list) {
+	public List<Product> getListProductTheoPage(int page, int element, List<Product> list) {
 		// TODO Auto-generated method stub
 		int position = (page - 1) * element;
 		int end = position + element;
@@ -123,7 +123,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Transactional
 	@Override
-	public List<Product> getListDienThoaiCoSapXep(String sortName,String searchName,String memory) {
+	public List<Product> getListProductCoSapXep(String sortName,String searchName,String memory) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		List<Product> dts = new ArrayList<Product>();
 		String sql = null;
@@ -146,7 +146,7 @@ public class ProductDAOImpl implements ProductDAO {
 			dts = currentSession.createNativeQuery(sql, Product.class).getResultList();
 			break;
 //		case "banchay":
-//			sql = "select dt.id, SUM(ct.soLuong) as sum from DIENTHOAI dt join CHITIETHOADON ct on dt.id = ct.id_DienThoai "
+//			sql = "select dt.id, SUM(ct.soLuong) as sum from DIENTHOAI dt join CHITIETHOADON ct on dt.id = ct.id_Product "
 //				+ "join THUONGHIEU th  on dt.id_ThuongHieu = th.id join THONGSO ts on dt.id_ThongSo = ts.id "
 //				+ "where (LOWER() like N'%"+searchName+"%' or LOWER(baoHanh) like N'%"+searchName+"%' or "
 //				+ "LOWER(kichThuoc) like N'%"+searchName+"%' or LOWER(mauSac) like N'%"+searchName+"%' or "
@@ -184,7 +184,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	@Transactional
-	public List<Product> getListDienThoaiSearch(String searchName) {
+	public List<Product> getListProductSearch(String searchName) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		List<Product> dts = new ArrayList<Product>();
 		String sql = null;
@@ -208,13 +208,13 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 //	@Transactional
 //	@Override
-//	public List<BanhNgot> getListDienThoaiTheoThuongHieu(int idThuongHieu) {
+//	public List<BanhNgot> getListProductTheoThuongHieu(int idThuongHieu) {
 //		Session session = sessionFactory.getCurrentSession();
 //		return session.createNativeQuery("select * from DIENTHOAI where id_ThuongHieu = "+idThuongHieu, BanhNgot.class).getResultList();
 //	}
 //
 	@Override
-	public List<Product> getListDienThoaiLienQuan(String tenDM) {
+	public List<Product> getListProductLienQuan(String tenDM) {
 		// TODO Auto-generated method stub
 		Session currentSession = sessionFactory.getCurrentSession();
 		List<Product> list=currentSession.createNativeQuery("select top 4 dt.* from Product dt join DANHMUC dm on dt.id_DanhMuc=dm.id\r\n"

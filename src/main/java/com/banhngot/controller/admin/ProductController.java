@@ -34,7 +34,7 @@ import com.banhngot.service.ThuongHieuService;
 
 @Controller(value = "dienThoaiControllerOfAdmin")
 @RequestMapping("/admin")
-public class DienThoaiController {
+public class ProductController {
 	private static final String UPLOA_DIRECTORY = "resources/user/images/SanPham";
 	@Autowired
 	private ProductService dienThoaiService;
@@ -50,9 +50,9 @@ public class DienThoaiController {
 
 	@GetMapping("/product/list")
 	public String listProduct(Model theModel, @RequestParam(value = "page", defaultValue = "1") int page) {
-		List<Product> productList = dienThoaiService.getListDienThoai();
+		List<Product> productList = dienThoaiService.getListProduct();
 		theModel.addAttribute("page", page);
-		theModel.addAttribute("productList", dienThoaiService.getListDienThoaiTheoPage(page, 7, productList));
+		theModel.addAttribute("productList", dienThoaiService.getListProductTheoPage(page, 7, productList));
 		theModel.addAttribute("total", productList.size());
 
 		return "admin/product";
@@ -61,13 +61,13 @@ public class DienThoaiController {
 	@GetMapping("/product/delete")
 	public String deleteProduct(@RequestParam("productId") int id, @RequestParam("productDetailId") int detailId) {
 		thongSoService.deleteThongSo(detailId);
-		dienThoaiService.deleteDienThoai(id);
+		dienThoaiService.deleteProduct(id);
 		return "redirect:/admin/product/list";
 	}
 
 	@GetMapping("/product/showFormEdit")
 	private String showFormEditProduct(@RequestParam("productId") int id, Model theModel, HttpSession session) {
-		Product product = dienThoaiService.getDienThoai(id);
+		Product product = dienThoaiService.getProduct(id);
 		List<TypeProduct> cates = danhMucService.getListDanhMuc();
 		int cate_id = product.getDanhMuc().getId();
 
@@ -126,7 +126,7 @@ public class DienThoaiController {
 			product.setDanhMuc(cate);
 			ThuongHieu thuongHieu = thuongHieuService.getTheoTen(cate.getTenDanhMuc().trim());
 //			product.setThuongHieu(thuongHieu);
-			dienThoaiService.saveDienThoai(product);
+			dienThoaiService.saveProduct(product);
 			return "redirect:/admin/product/list";
 		}
 
@@ -137,7 +137,7 @@ public class DienThoaiController {
 			ServletContext context = request.getServletContext();
 			String path = context.getRealPath(UPLOA_DIRECTORY);
 			String imageUrl = commonsMultipartFile.getOriginalFilename();
-			String img = "D:\\IUH\\WWW.JAVA\\A-project\\New folder\\Project_WebsiteBanDienThoaiTrucTuyen\\WebBanDienThoai\\src\\main\\webapp\\resources\\user\\images\\SanPham\\";
+			String img = "D:\\IUH\\WWW.JAVA\\A-project\\New folder\\Project_WebsiteBanProductTrucTuyen\\WebBanProduct\\src\\main\\webapp\\resources\\user\\images\\SanPham\\";
 
 			byte[] bytes = commonsMultipartFile.getBytes();
 			BufferedOutputStream stream = new BufferedOutputStream(

@@ -25,12 +25,12 @@ public class DanhMucController {
 	private TypeProductService danhMucService;
 
 	@Autowired
-	private ProductService dienThoaiService;
+	private ProductService productService;
 
 	@GetMapping("/cate/list")
 	private String getListDanhMuc(Model thModel) {
 		List<TypeProduct> cates = danhMucService.getListDanhMuc();
-		List<Product> dts = dienThoaiService.getListDienThoai();
+		List<Product> dts = productService.getListProduct();
 		thModel.addAttribute("cates", cates);
 		thModel.addAttribute("dts", dts);
 		return "admin/cate";

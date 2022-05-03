@@ -18,7 +18,7 @@ public class ChiTietDienThoaiController {
 
 	@GetMapping("/product/product-detail")
 	public String productDetail(@RequestParam("productId") int id, Model theModel) {
-		Product product = dienThoaiService.getDienThoai(id);
+		Product product = dienThoaiService.getProduct(id);
 		theModel.addAttribute("product", product);
 		return "admin/product-detail";
 	}
