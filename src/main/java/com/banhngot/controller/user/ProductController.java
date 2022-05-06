@@ -21,7 +21,7 @@ import com.banhngot.entity.Product;
 import com.banhngot.service.TypeProductService;
 import com.banhngot.service.ProductService;
 
-@Controller(value = "dienThoaiControllerOfUser")
+@Controller(value = "productControllerOfUser")
 @RequestMapping("/banhngot")
 public class ProductController { 
 	@Autowired
@@ -30,8 +30,6 @@ public class ProductController {
 	@Autowired
 	private TypeProductService danhMucService;
 
-	
-	//@RequestParam(value="search", defaultValue = "") String search là nhận search từ bên jsp
 	@GetMapping("/danhsach")
 	public String listCustomers(Model theModel, @RequestParam(required = false) String sort,
 			@RequestParam(value="search", defaultValue = "") String search) {
@@ -53,18 +51,18 @@ public class ProductController {
 	
 	@GetMapping("/danhmuc")
 	public String danhmuc(Model theModel, HttpSession session) {
-		List<Product> dts = (List<Product>) session.getAttribute("dts");
-		if (dts == null) {
-			dts = productService.getListProductLienQuan(danhMucService.getListDanhMuc().get(0).getTenDanhMuc());
+		List<Product> bns = (List<Product>) session.getAttribute("bns");
+		if (bns == null) {
+			bns = productService.getListProductLienQuan(danhMucService.getListDanhMuc().get(0).getTenDanhMuc());
 		}
-		theModel.addAttribute("dts", dts);
+		theModel.addAttribute("bns", bns);
 		theModel.addAttribute("iddanhmuc", session.getAttribute("iddanhmuc"));
 		theModel.addAttribute("dms", danhMucService.getListDanhMuc());
 		return "user/typeProduct";
 	}
 	@RequestMapping(value = "/danhmuc/{danhMucId}", method = RequestMethod.GET)
 	public String getProductTheoDanhMuc(Model model,@PathVariable(value = "danhMucId")int danhMucId,HttpSession session) {
-		session.setAttribute("dts", productService.getListProductLienQuan(danhMucService.getDanhMuc(danhMucId).getTenDanhMuc()));
+		session.setAttribute("bns", productService.getListProductLienQuan(danhMucService.getDanhMuc(danhMucId).getTenDanhMuc()));
 		session.setAttribute("iddanhmuc", danhMucId);
 		return "redirect:/banhngot/danhmuc";
 	}

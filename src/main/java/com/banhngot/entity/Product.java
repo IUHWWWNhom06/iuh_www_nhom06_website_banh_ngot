@@ -61,12 +61,10 @@ public class Product implements Serializable{
 	
 	@Nationalized
 	@Size(min = 1, message = "Không được bỏ trống")
-//	@Pattern(regexp = "[A-Za-z0-9 \\p{L}+]{1,}",message = "Không chứa kí tự đặc biệt")
 	private String description;
 	
 	@Nationalized
 	@Size(min = 1, message = "Không được bỏ trống")
-//	@Pattern(regexp = "[A-Za-z0-9 \\p{L}+]{1,}",message = "Không chứa kí tự đặc biệt")
 	private String ingredient;
 	
 	@NotNull(message = "Không được bỏ trống")

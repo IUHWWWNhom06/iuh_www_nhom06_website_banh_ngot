@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/common/taglib.jsp"%>
 <c:url value="/resources" var="resources" />
-<!-- Để lấy link có đuôi -->
 <c:url var="linkgia_asc" value="/banhngot/danhsach">
 	<c:param name="sort" value="gia_asc" />
 	<c:param name="search" value="${search}" />

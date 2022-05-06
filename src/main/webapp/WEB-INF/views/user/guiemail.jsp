@@ -13,7 +13,6 @@
 			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 				<div class="login fs14">
 					<h1>Vui lòng kiểm tra email của bạn!</h1>
-					
 				</div>
 			</div>
 		</div>

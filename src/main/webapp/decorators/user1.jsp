@@ -9,7 +9,7 @@
 <c:url value="/resources/user/css" var="css" />
 <head>
 <meta charset="UTF-8">
-<title>TRANG CHỦ Q-MOBILE</title>
+<title>TRANG CHỦ BÁNH NGỌT</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 <link rel="stylesheet" href="${resources}/user1/css/base.css">
 <link rel="stylesheet" href="${resources}/user1/css/main.css">
@@ -22,8 +22,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="${resources}/user/css/pagination.min.css">
 
-<title>Mobile Việt Nam | Mua và Bán Trên Ứng Dụng Di Động Hoặc
-	Website</title>
+<title>BÁNH NGỌT</title>
 </head>
 <body>
 	<div class="app">

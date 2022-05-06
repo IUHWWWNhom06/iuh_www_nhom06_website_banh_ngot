@@ -69,7 +69,7 @@
 						<div class="area">
 						<h2>Exception</h2>
 							<span>${error}</span> <a
-								href="${pageContext.request.contextPath}/dienthoai/danhsach">
+								href="${pageContext.request.contextPath}/product/danhsach">
 								Trở về trang chủ</a>
 						</div>
 					</div>
