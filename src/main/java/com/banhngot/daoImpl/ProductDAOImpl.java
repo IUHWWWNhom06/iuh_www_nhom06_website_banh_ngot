@@ -94,7 +94,7 @@ public class ProductDAOImpl implements ProductDAO {
 			break;
 		case "giamgia":
 			sql = "select dt.* from Product dt "
-					+ "where giamGia > 0 "
+					+ "where discount > 0 "
 					+ "order by (price*(100-discount))/100  asc";
 			dts = currentSession.createNativeQuery(sql, Product.class).getResultList();
 			break;

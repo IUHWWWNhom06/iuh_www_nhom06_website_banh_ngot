@@ -61,7 +61,7 @@
 						<td>
 							<div style="text-align: center; color: red; font-size: 25px">
 								<fmt:formatNumber type="number" pattern="#,###,###.##₫"
-									value="${ds.product.giaDT}" />
+									value="${ds.product.price}" />
 							</div>
 							<div style="text-align: center; margin-top: 10px">												
 								<c:if test="${ds.soLuong >= 2}">
@@ -77,14 +77,14 @@
 								&nbsp; 
 									<span class="fs14">${ds.soLuong} </span>
 								&nbsp;
-								<c:if test="${ds.soLuong >= ds.product.soLuongTon}">
+								<c:if test="${ds.soLuong >= ds.product.quantity}">
 									<a onclick="return confirm('Không đủ số lượng trong kho!');">
 										<button	class="btn btn-warning fs16" style="opacity: 0.5;background: #ff8533; color: #fff;">
 											<b>+</b>
 										</button>
 									</a>
 								</c:if>
-								<c:if test="${ds.soLuong < ds.product.soLuongTon}">
+								<c:if test="${ds.soLuong < ds.product.quantity}">
 								<a href="${pageContext.request.contextPath }/user/tangsoluong/${ds.product.id}"><button
 											class="btn fs16" style="background: #ff8533; color: #fff;">
 											<b>+</b>
