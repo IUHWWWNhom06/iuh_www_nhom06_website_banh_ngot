@@ -14,11 +14,11 @@
 	<br>
 	<div class="container">
 		<div class="row"
-			style="background-color: #f2f885; margin-bottom: 20px">
+			style="background-color: #E8C2C2; margin-bottom: 20px">
 			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 				<div class="welcomelogin">
 					<div>
-						<img alt="" src="${img}/logo.png">
+						<img alt="" src="${img}/images.jpg">
 					</div>
 					<div style="font-size: 25px">
 						<b>Welcome to login</b>
@@ -28,7 +28,7 @@
 					</p>
 					<div>
 						<a href="${pageContext.request.contextPath}/user/formDangNhap"><button
-								class="btn btn-outline-warning fs14" style="color: black">Đăng nhập</button></a>
+								class="btn btn-danger fs14" style="color: black;border:1px solid black">Đăng nhập</button></a>
 					</div>
 				</div>
 			</div>
@@ -97,7 +97,7 @@
 							<b class="fs14">${loi}</b>
 						</div>
 						<div style="margin-top: 30px">
-							<button class="btn" type="submit">
+							<button class="btn" type="submit" style="background: #E8C2C2">
 								<b>Đăng ký</b>
 							</button>
 							</a>

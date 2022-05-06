@@ -14,11 +14,11 @@
 	<br>
 	<div class="container">
 		<div class="row"
-			style="background-color: #f2f885; margin-bottom: 20px">
+			style="background-color: #E8C2C2; margin-bottom: 20px">
 			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 				<div class="welcomelogin fs14">
 					<div>
-						<img alt="" src="${img}/logo.png">
+						<img alt="" src="${img}/images.jpg">
 					</div>
 					<div style="font-size: 25px">
 						<b>Welcome to login</b>
@@ -26,15 +26,15 @@
 					<div>Bạn chưa có tài khoản?</div>
 					<div>
 						<a href="${pageContext.request.contextPath}/user/formDangKy"><button
-								class="btn btn-outline-warning text-uppercase mt-2 fs14"
-								style="color: black">Đăng ký</button></a>
+								class="btn btn-danger text-uppercase mt-2 fs14"
+								style="color: black;border:1px solid black;"  >Đăng ký</button></a>
 					</div>
 				</div>
 			</div>
 			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 				<div class="login fs14">
 					<div style="text-align: center;">
-						<b>ĐĂNG NHẬP</b>
+						<b>Đăng nhập</b>
 					</div>
 					<form action="${pageContext.request.contextPath}/dangNhap"
 						method="post">
@@ -63,7 +63,7 @@
 								Tên đăng nhập hoặc mật khẩu không hợp lệ.</div>
 						</c:if>
 						<div style="margin-top: 30px">
-							<button class="btn" type="submit">
+							<button class="btn" type="submit" style="background: #E8C2C2">
 								<b class="text-uppercase fs14">Đăng nhập</b>
 							</button>
 							</a>
