@@ -16,14 +16,14 @@
 						<c:forEach var="dm" items="${dms}">
 							<c:if test="${iddanhmuc != dm.id}">
 								<li class="category-item"><a
-									href="${pageContext.request.contextPath}/product/danhmuc/${dm.id}"
+									href="${pageContext.request.contextPath}/banhngot/danhmuc/${dm.id}"
 									class="category-item__link text-decoration-none">${dm.tenDanhMuc}</a>
 								</li>
 							</c:if>
 							<c:if test="${iddanhmuc == dm.id}">
 								<li class="category-item"><a
-									href="${pageContext.request.contextPath}/product/danhmuc/${dm.id}"
-									class="category-item__link text-decoration-none bg-warning text-white">${dm.tenDanhMuc}</a>
+									href="${pageContext.request.contextPath}/banhngot/danhmuc/${dm.id}"
+									class="category-item__link text-decoration-none text-white" style="background: #ff8533;">${dm.tenDanhMuc}</a>
 								</li>
 							</c:if>
 
@@ -38,32 +38,32 @@
 
 							<a class="home-product-item pb-3 text-deco 	"
 								style="padding-top: 15px;"
-								href="${pageContext.request.contextPath}/product/danhmuc">
+								href="${pageContext.request.contextPath}/banhngot/danhmuc">
 								<div class="home-product-item-img"
 									style="background-image: url(${resources}/user/images/SanPham/${dt.anhURL}); width: 90%;"></div>
 								<h4 class="home-product-item__name">${dt.name}</h4> <c:if
-									test="${dt.giamGia>0}">
+									test="${dt.discount>0}">
 									<div class="home-product-item__price">
 										<span class="home-product-item__price-old"><fmt:formatNumber
-												type="number" pattern="#,###,###.##" value="${dt.giaDT}" />
+												type="number" pattern="#,###,###.##" value="${dt.price}" />
 											đ</span> <span class="home-product-item__price-current"
 											style="color: red;"><fmt:formatNumber type="number"
 												pattern="#,###,###.##"
-												value="${(dt.giaDT*(100-dt.giamGia))/100}" /> đ </span>
+												value="${(dt.price*(100-dt.discount))/100}" /> đ </span>
 									</div>
-								</c:if> <c:if test="${dt.giamGia<=0}">
+								</c:if> <c:if test="${dt.discount<=0}">
 									<div class="home-product-item__price">
 										<span class="home-product-item__price-current float-right"><fmt:formatNumber
-												type="number" pattern="#,###,###.##" value="${dt.giaDT}" />
+												type="number" pattern="#,###,###.##" value="${dt.price}" />
 											đ </span>
 									</div>
-								</c:if> <c:if test="${dt.giamGia>0}">
+								</c:if> <c:if test="${dt.discount>0}">
 									<div class="home-product-item__sale-off">
-										<span class="home-product-item__percent">${dt.giamGia}</span>
+										<span class="home-product-item__percent">${dt.discount}</span>
 										<span class="home-product-item__label">GIẢM</span>
 									</div>
 								</c:if>
-							</a> <a class="btn btn-success btn-block fs14"
+							</a> <a class="btn btn-block fs14"  style="background: #ff8533; color: #fff;
 								href="${pageContext.request.contextPath}/user/themvaogiohang/${dt.id}">
 								Thêm vào giỏ hàng </a>
 						</div>

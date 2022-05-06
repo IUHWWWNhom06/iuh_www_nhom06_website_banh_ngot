@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.banhngot.dao.ProductDAO;
 import com.banhngot.entity.Product;
-import com.banhngot.entity.ThuongHieu;
 import com.banhngot.service.ProductService;
 
 @Service

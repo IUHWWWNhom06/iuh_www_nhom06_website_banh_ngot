@@ -16,22 +16,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.banhngot.dao.BinhLuanDao;
-import com.banhngot.entity.BinhLuan;
+
 import com.banhngot.entity.Product;
-import com.banhngot.entity.ThuongHieu;
-import com.banhngot.service.BinhLuanService;
 import com.banhngot.service.TypeProductService;
 import com.banhngot.service.ProductService;
 
 @Controller(value = "dienThoaiControllerOfUser")
-@RequestMapping("/product")
+@RequestMapping("/banhngot")
 public class ProductController { 
 	@Autowired
 	private ProductService productService;
-	
-	@Autowired
-	private BinhLuanService binhLuanService;
 	
 	@Autowired
 	private TypeProductService danhMucService;
@@ -54,7 +48,7 @@ public class ProductController {
 		theModel.addAttribute("total", listProduct.size());	
 		theModel.addAttribute("dms", danhMucService.getListDanhMuc());
 		System.out.println(search);
-		return "user/danhsach-product2";
+		return "user/listProduct";
 	}
 	
 	@GetMapping("/danhmuc")
@@ -66,13 +60,13 @@ public class ProductController {
 		theModel.addAttribute("dts", dts);
 		theModel.addAttribute("iddanhmuc", session.getAttribute("iddanhmuc"));
 		theModel.addAttribute("dms", danhMucService.getListDanhMuc());
-		return "user/danhmuc";
+		return "user/typeProduct";
 	}
 	@RequestMapping(value = "/danhmuc/{danhMucId}", method = RequestMethod.GET)
 	public String getProductTheoDanhMuc(Model model,@PathVariable(value = "danhMucId")int danhMucId,HttpSession session) {
 		session.setAttribute("dts", productService.getListProductLienQuan(danhMucService.getDanhMuc(danhMucId).getTenDanhMuc()));
 		session.setAttribute("iddanhmuc", danhMucId);
-		return "redirect:/product/danhmuc";
+		return "redirect:/banhngot/danhmuc";
 	}
 
 	@GetMapping("/search")
@@ -82,21 +76,10 @@ public class ProductController {
 			model.addAttribute("search",searchName);
 			model.addAttribute("page", page);
 			model.addAttribute("products", productService.getListProduct(dts));
-			return "user/danhsach-product2";
+			return "user/listProduct";
 		}else {
 			return "user/notfoundproduct";
 		}
 	}
-	@RequestMapping(value = "/savebinhluan", method = RequestMethod.POST)
-	public String themBinhLuan(@ModelAttribute("binhluan") BinhLuan binhLuan,HttpSession session) {
-		if (!binhLuan.getNoiDung().equals("")||!binhLuan.getTenBinhLuan().equals("")) {
-			Product dt =(Product) session.getAttribute("product");
-			binhLuan.setDienThoai(dt);
-			binhLuan.setId(null);
-			binhLuan.setNgay(LocalDateTime.now());
-			binhLuanService.themBinhLuan(binhLuan);
-		}
-		
-		return "redirect:/product/chitietproduct";
-	}
+
 }

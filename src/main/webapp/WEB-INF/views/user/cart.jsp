@@ -18,8 +18,8 @@
 			<thead>
 				<tr>
 					<td style="text-align: left;"><a
-						href="${pageContext.request.contextPath}/product/danhsach">
-							<button type="button" class="btn btn-success fs14">
+						href="${pageContext.request.contextPath}/banhngot/danhsach">
+							<button type="button" class="btn fs14" style="background: #ff8533; color: #fff;"> 
 								<i class="fa fa-angle-left"></i> Tiếp tục mua hàng
 							</button>
 					</a></td>
@@ -44,7 +44,8 @@
 									<div style="text-align: center; margin-top: 10%">
 										<a
 											href="${pageContext.request.contextPath}/user/xoaproductcart/${ds.product.id}"><button
-												class="btn btn-danger btn-sm">
+												class="btn btn-danger btn-sm" style="background: #ff1a1a; color: #fff;">
+												
 												<i class="fa fa-trash"></i>
 											</button> </a>
 									</div>
@@ -65,12 +66,12 @@
 							<div style="text-align: center; margin-top: 10px">												
 								<c:if test="${ds.soLuong >= 2}">
 									<a href="${pageContext.request.contextPath }/user/giamsoluong/${ds.product.id}">
-										<button class="btn btn-warning fs16"><b>-</b></button>
+										<button class="btn fs16" style="background: #ff8533; color: #fff;"><b>-</b></button>
 									</a>
 								</c:if>
 								<c:if test="${ds.soLuong == 1}">
 									<a href="${pageContext.request.contextPath}/user/xoaproductcart/${ds.product.id}">
-										<button class="btn btn-warning fs16"><b>-</b></button>
+										<button class="btn fs16" style="background: #ff8533; color: #fff;"><b>-</b></button>
 									</a>
 								</c:if>	
 								&nbsp; 
@@ -78,14 +79,14 @@
 								&nbsp;
 								<c:if test="${ds.soLuong >= ds.product.soLuongTon}">
 									<a onclick="return confirm('Không đủ số lượng trong kho!');">
-										<button	class="btn btn-warning fs16" style="opacity: 0.5">
+										<button	class="btn btn-warning fs16" style="opacity: 0.5;background: #ff8533; color: #fff;">
 											<b>+</b>
 										</button>
 									</a>
 								</c:if>
 								<c:if test="${ds.soLuong < ds.product.soLuongTon}">
 								<a href="${pageContext.request.contextPath }/user/tangsoluong/${ds.product.id}"><button
-											class="btn btn-warning fs16">
+											class="btn fs16" style="background: #ff8533; color: #fff;">
 											<b>+</b>
 										</button></a>
 								</c:if>																														
@@ -118,20 +119,20 @@
 						<c:if test="${tongtien==0 }">
 							<a href="${pageContext.request.contextPath }/user/gioHang"
 									onclick="return confirm('Không có sản phẩm nào trong giỏ hàng!');"><button
-										style="width: 100%" type="button" class="btn btn-success fs14">Đặt
+										style="width: 100%; background: #ff8533; color: #fff;" class="btn btn-success fs14">Đặt
 										hàng</button></a>
 						</c:if>
 							<c:if test="${tenDangNhap==null && tongtien > 0}">
 								<a href="${pageContext.request.contextPath }/user/showFormNguoiNhan"
 									onclick="return confirm('Bạn phải đăng nhập mới đặt hàng được!');"><button
-										style="width: 100%" type="button" class="btn btn-success fs14">Đặt
+										style="width: 100%; background: #ff8533; color: #fff;" class="btn btn-success fs14">Đặt
 										hàng</button></a>
 							</c:if>
 						<c:if test="${tenDangNhap!=null && tongtien > 0}">
 							<a
 								href="${pageContext.request.contextPath }/user/showFormNguoiNhan">
-								<button style="width: 100%" type="button"
-									class="btn btn-success fs14 text-uppercase">Đặt hàng</button>
+								<button style="width: 100%; background: #ff8533; color: #fff;" type="button"
+									class="btn fs14 text-uppercase">Đặt hàng</button>
 							</a>
 							
 						</c:if>

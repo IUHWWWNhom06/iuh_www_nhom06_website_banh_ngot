@@ -1,1 +1,1 @@
-<% response.sendRedirect("product/danhsach"); %>
+<% response.sendRedirect("banhngot/danhsach"); %>

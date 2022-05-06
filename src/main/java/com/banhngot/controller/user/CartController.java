@@ -93,8 +93,8 @@ public class CartController {
 		double thue = 0;
 		for (ProductCart productCart : cart) {
 			thue++;
-			tamTinh += productCart.getProduct().getGiaDT() * productCart.getSoLuong();
-			giamGia += (tamTinh * productCart.getProduct().getGiamGia()) / 100;
+			tamTinh += productCart.getProduct().getPrice() * productCart.getSoLuong();
+			giamGia += (tamTinh * productCart.getProduct().getDiscount()) / 100;
 //			thue += (tamTinh * productCart.getProduct().getThue()) / 100;
 			session.setAttribute("tamtinh", tamTinh);
 			session.setAttribute("giamgia", giamGia);

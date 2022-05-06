@@ -100,12 +100,12 @@ public class ThanhToanController {
 			String noiDung="";
 			for (ProductCart dt : cart) {	
 				noiDung+="Điện thoại: "+dt.getProduct().getName()+" "
-						+ ", màu: " +" . "+"Đơn giá: "+format.format(dt.getProduct().getGiaDT())+" "+" Số lượng: "+dt.getSoLuong()+" \n";
+						+ ", màu: " +" . "+"Đơn giá: "+format.format(dt.getProduct().getPrice())+" "+" Số lượng: "+dt.getSoLuong()+" \n";
 				chiTietHoaDonService.addChiTietHoaDon(dt.getProduct().getId(), nguoiNhan.getId(), dt.getSoLuong());
 				Product capNhatSoLuong=dt.getProduct();
 				int soLuong=0;
-				soLuong= dt.getProduct().getSoLuongTon()-dt.getSoLuong();
-				capNhatSoLuong.setSoLuongTon(soLuong);
+				soLuong= dt.getProduct().getQuantity()-dt.getSoLuong();
+				capNhatSoLuong.setQuantity(soLuong);
 				dienThoaiService.saveProduct(capNhatSoLuong);
 			}
 			String thongTinNguoiNhan = 

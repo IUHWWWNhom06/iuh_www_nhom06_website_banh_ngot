@@ -152,7 +152,7 @@ html {
 }
 
 .footer {
-    border-top: 4px solid var(--primary-color);
+    border-top: 4px solid #ffa366;
     padding-top: 12px;
 }
 

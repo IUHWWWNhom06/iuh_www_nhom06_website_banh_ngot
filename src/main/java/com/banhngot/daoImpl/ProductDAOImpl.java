@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.banhngot.dao.ProductDAO;
 import com.banhngot.entity.Product;
-import com.banhngot.entity.ThuongHieu;
 
 @Repository
 public class ProductDAOImpl implements ProductDAO {
@@ -85,24 +84,24 @@ public class ProductDAOImpl implements ProductDAO {
 		case "gia_asc":
 			sql = "select dt.* from Product dt "
 					+ "where (LOWER(name) like N'%"+searchName+"%')"
-					+ "order by (giaDT*(100-giamGia))/100  asc";
+					+ "order by (price*(100-discount))/100  asc";
 			dts = currentSession.createNativeQuery(sql, Product.class).getResultList();
 			break;
 		case "gia_desc":
 			sql = "select dt.* from Product dt "
-					+ "order by (giaDT*(100-giamGia))/100  desc";
+					+ "order by (price*(100-discount))/100  desc";
 			dts = currentSession.createNativeQuery(sql, Product.class).getResultList();
 			break;
 		case "giamgia":
 			sql = "select dt.* from Product dt "
 					+ "where giamGia > 0 "
-					+ "order by (giaDT*(100-giamGia))/100  asc";
+					+ "order by (price*(100-discount))/100  asc";
 			dts = currentSession.createNativeQuery(sql, Product.class).getResultList();
 			break;
 		default:
 			sql = "select dt.* from Product dt "
 					+ "where (LOWER(name) like N'%"+searchName+"%') "
-					+ "order by (giaDT*(100-giamGia))/100  desc";
+					+ "order by (price*(100-discount))/100  desc";
 			dts = currentSession.createNativeQuery(sql, Product.class).getResultList();
 			break;
 		}
