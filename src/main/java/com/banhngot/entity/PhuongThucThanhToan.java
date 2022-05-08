@@ -12,8 +12,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Nationalized;
 
 @Entity
-@Table(name = "PAYMENTMETHOD")
-public class PaymentMethod implements Serializable{
+@Table(name = "PHUONGTHUCTHANHTOAN")
+public class PhuongThucThanhToan implements Serializable{
 	/**
 	 * 
 	 */
@@ -25,7 +25,19 @@ public class PaymentMethod implements Serializable{
 	private Integer id;
 	
 	@Nationalized
-	private String method;
+	private String phuongThuc;
+	
+
+	public PhuongThucThanhToan(Integer id,String phuongThuc) {
+		super();
+		this.id = id;
+		this.phuongThuc = phuongThuc;
+
+	}
+
+	public PhuongThucThanhToan() {
+		super();
+	}
 
 	public Integer getId() {
 		return id;
@@ -35,27 +47,22 @@ public class PaymentMethod implements Serializable{
 		this.id = id;
 	}
 
-	public String getMethod() {
-		return method;
+
+	public String getPhuongThuc() {
+		return phuongThuc;
 	}
 
-	public void setMethod(String method) {
-		this.method = method;
+	public void setPhuongThuc(String phuongThuc) {
+		this.phuongThuc = phuongThuc;
 	}
 
-	public PaymentMethod(Integer id, String method) {
-		super();
-		this.id = id;
-		this.method = method;
-	}
+
 
 	@Override
 	public String toString() {
-		return "PaymentMethod [id=" + id + ", method=" + method + "]";
+		return "PhuongThucThanhToan [id=" + id + ", phuongThuc=" + phuongThuc
+				+ "]";
 	}
-	
-	
-	
 	
 	
 }

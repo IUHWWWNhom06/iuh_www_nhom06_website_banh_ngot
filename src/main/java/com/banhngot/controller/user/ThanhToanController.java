@@ -27,31 +27,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.banhngot.entity.OrderDetail;
+import com.banhngot.entity.ChiTietHoaDon;
 import com.banhngot.entity.Product;
 import com.banhngot.entity.ProductCart;
-import com.banhngot.entity.Order;
+import com.banhngot.entity.HoaDon;
 import com.banhngot.entity.NguoiDung;
-import com.banhngot.entity.PaymentMethod;
+import com.banhngot.entity.PhuongThucThanhToan;
+import com.banhngot.service.ChiTietHoaDonService;
 import com.banhngot.service.ProductService;
-import com.banhngot.service.OrderService;
+import com.banhngot.service.HoaDonService;
 import com.banhngot.service.NguoiDungService;
-import com.banhngot.service.OrderDetailService;
 
-@Controller(value = "paymentController")
+@Controller(value = "thanhToanController")
 @RequestMapping(value = "/user")
-public class PaymentController {
+public class ThanhToanController {
 	@Autowired
-	OrderService orderService;
+	HoaDonService hoaDonService;
 
 	@Autowired
 	NguoiDungService nguoiDungService;
 
 	@Autowired
-	OrderDetailService orderDetailService;
+	ChiTietHoaDonService chiTietHoaDonService;
 
 	@Autowired
-	ProductService productService;
+	ProductService dienThoaiService;
 
 	@GetMapping(value = "/showFormNguoiNhan")
 	public String showFormNguoiNhan(Model model, HttpSession session) {
@@ -65,20 +65,20 @@ public class PaymentController {
 				session.setAttribute("errorcartnull", "Vui lòng chọn sản phẩm vào giỏ hàng");
 				return "redirect:/user/gioHang";
 			} else {
-				List<PaymentMethod> getAllPaymentMethod = orderService.getAllPaymentMethod();
-				model.addAttribute("nguoiNhan", new Order());
-				model.addAttribute("getAllPaymentMethod", getAllPaymentMethod);
+				List<PhuongThucThanhToan> layTatCaPhuongThucThanhToan = hoaDonService.layTatCaPhuongThucThanhToan();
+				model.addAttribute("nguoiNhan", new HoaDon());
+				model.addAttribute("layTatCaPhuongThucThanhToan", layTatCaPhuongThucThanhToan);
 				return "user/thanhtoan";
 			}
 		}
 	}
 
 	@RequestMapping(value = "/thanhtoan", method = RequestMethod.POST)
-	public String thanhToan(@Valid @ModelAttribute("nguoiNhan")Order nguoiNhan,BindingResult result,@RequestParam("idPT") int idPT, Model model, Principal principal,
+	public String thanhToan(@Valid @ModelAttribute("nguoiNhan")HoaDon nguoiNhan,BindingResult result,@RequestParam("idPT") int idPT, Model model, Principal principal,
 			HttpSession session) {
 		if (result.hasErrors()) {
-			List<PaymentMethod> getAllPaymentMethod = orderService.getAllPaymentMethod();
-			model.addAttribute("getAllPaymentMethod", getAllPaymentMethod);
+			List<PhuongThucThanhToan> layTatCaPhuongThucThanhToan = hoaDonService.layTatCaPhuongThucThanhToan();
+			model.addAttribute("layTatCaPhuongThucThanhToan", layTatCaPhuongThucThanhToan);
 			return "user/thanhtoan";
 		}
 		else {
@@ -86,33 +86,33 @@ public class PaymentController {
 			NguoiDung nguoiDung = nguoiDungService.getTenDangNhap(tenDangNhap);
 			nguoiNhan.setNguoiDung(nguoiDung);
 			
-			PaymentMethod pm=orderService.getMethod(idPT);
-			nguoiNhan.setPayment(pm);
+			PhuongThucThanhToan pttt=hoaDonService.getPhuongThuc(idPT);
+			nguoiNhan.setThanhToan(pttt);
 			
 			long millis = System.currentTimeMillis();
 			Date date = new Date(millis);
-			nguoiNhan.setCreateAt(date);
+			nguoiNhan.setNgayLap(date);
 						
-			orderService.saveOrder(nguoiNhan);
+			hoaDonService.saveHoaDon(nguoiNhan);
 			
 			DecimalFormat format = new DecimalFormat("###,###.## vnđ");
 			List<ProductCart> cart = (List<ProductCart>) session.getAttribute("cart");
 			String noiDung="";
-			for (ProductCart cake : cart) {	
-				noiDung+="Bánh: "+cake.getProduct().getName()+" "
-						+ ", màu: " +" . "+"Đơn giá: "+format.format(cake.getProduct().getPrice())+" "+" Số lượng: "+cake.getSoLuong()+" \n";
-				orderDetailService.addAllOrderDetail(cake.getProduct().getId(), nguoiNhan.getId(), cake.getSoLuong());
-				Product capNhatSoLuong=cake.getProduct();
+			for (ProductCart dt : cart) {	
+				noiDung+="Điện thoại: "+dt.getProduct().getName()+" "
+						+ ", màu: " +" . "+"Đơn giá: "+format.format(dt.getProduct().getPrice())+" "+" Số lượng: "+dt.getSoLuong()+" \n";
+				chiTietHoaDonService.addChiTietHoaDon(dt.getProduct().getId(), nguoiNhan.getId(), dt.getSoLuong());
+				Product capNhatSoLuong=dt.getProduct();
 				int soLuong=0;
-				soLuong= cake.getProduct().getQuantity()-cake.getSoLuong();
+				soLuong= dt.getProduct().getQuantity()-dt.getSoLuong();
 				capNhatSoLuong.setQuantity(soLuong);
-				productService.saveProduct(capNhatSoLuong);
+				dienThoaiService.saveProduct(capNhatSoLuong);
 			}
 			String thongTinNguoiNhan = 
-					"- Họ và tên: "+nguoiNhan.getNameCustomer()+"\n"+
-					"- Số điện thoại: "+nguoiNhan.getPhoneCustomer()+"\n"+
+					"- Họ và tên: "+nguoiNhan.getHoTenKhachHang()+"\n"+
+					"- Số điện thoại: "+nguoiNhan.getSoDienThoaiGiaoHang()+"\n"+
 					"- Email: "+nguoiNhan.getEmail()+"\n"+
-					"- Địa chỉ nhận: "+nguoiNhan.getAddressCustomer()+"\n";
+					"- Địa chỉ nhận: "+nguoiNhan.getDiaChiGiaoHang()+"\n";
 			
 			guiMailChoKhachHang(nguoiNhan.getEmail(), noiDung, format.format((Double) session.getAttribute("tongtien")),thongTinNguoiNhan);
 			cart.removeAll(cart);

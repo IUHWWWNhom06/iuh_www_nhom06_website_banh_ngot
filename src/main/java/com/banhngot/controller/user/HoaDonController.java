@@ -8,21 +8,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.banhngot.entity.Order;
-import com.banhngot.service.OrderService;
+import com.banhngot.entity.HoaDon;
+import com.banhngot.service.HoaDonService;
 
-@Controller(value = "cartControllerOfUser")
-@RequestMapping("/order")
-public class OrderController {
+@Controller(value = "gioHangControllerOfUser")
+@RequestMapping("/hoadon")
+public class HoaDonController {
 	@Autowired
-	private OrderService orderService;
+	private HoaDonService hoaDonService;
 
 	@GetMapping("/list")
 	public String listCustomers(Model theModel) {
 		// get customers from the service
-		List<Order> cakes = orderService.getListOrder();
+		List<HoaDon> dts = hoaDonService.getListHoaDon();
 		// add the customers to the model
-		theModel.addAttribute("cakes", cakes);
-		return "listCake";
+		theModel.addAttribute("dts", dts);
+		return "ds-dienthoai";
 	}
 }

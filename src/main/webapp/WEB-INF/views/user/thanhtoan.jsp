@@ -15,15 +15,16 @@
 	<div class="container">
 		<div class="row">
 			<table class="table" style="width: 60%">
-				<c:forEach var="cake" items="${sessionScope.cart}">
+				<c:forEach var="dt" items="${sessionScope.cart}">
 					<tr class="fs16">
-						<td><img alt="" src="${resources}/user/images/SanPham/${cake.product.anhURL}"
+						<td><img alt="" src="${resources}/user/images/SanPham/${dt.dienThoai.anhURL}"
 							style="width: 100p; height: 100px"></td>
-						<td><b>Bánh: ${cake.product.name}<br>
-								Thành phần: ${cake.product.ingredient} <br>Đơn giá: <fmt:formatNumber
+						<td><b>Điện thoại ${dt.dienThoai.tenDT}
+								${dt.dienThoai.thongSo.boNho} - ${dt.dienThoai.thongSo.ram} <br>
+								Màu : ${dt.dienThoai.mauSac} <br>Đơn giá: <fmt:formatNumber
 									type="number" pattern="#,###,###.##₫"
-									value="${cake.product.price}" /> <br> Số lượng:
-								${cake.soLuong}	
+									value="${dt.dienThoai.giaDT}" /> <br> Số lượng:
+								${dt.soLuong}	
 								
 						</b></td>
 					</tr>
@@ -51,30 +52,30 @@
 						<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Họ và
 							tên</label>
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-							<form:input class="form-control form-control-lg fs13" path="nameCustomer"
+							<form:input class="form-control form-control-lg fs13" path="hoTenKhachHang"
 								placeholder="Nhập họ và tên người nhận" />
 							<span style="color: red"><form:errors
-									path="nameCustomer" cssClass="error"></form:errors></span>
+									path="hoTenKhachHang" cssClass="error"></form:errors></span>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Số điện
 							thoại</label>
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-							<form:input cssClass="form-control form-control-lg fs13" path="phoneCustomer"
+							<form:input cssClass="form-control form-control-lg fs13" path="soDienThoaiGiaoHang"
 								placeholder="Nhập số điện thoại người nhận" />
 							<span style="color: red;"><form:errors
-									path="phoneCustomer" cssClass="error"></form:errors></span>
+									path="soDienThoaiGiaoHang" cssClass="error"></form:errors></span>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Địa chỉ
 						</label>
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-							<form:input class="form-control form-control-lg fs13" path="addressCustomer"
+							<form:input class="form-control form-control-lg fs13" path="diaChiGiaoHang"
 								placeholder="Nhập số địa chỉ người nhận" />
 							<span style="color: red"><form:errors
-									path="addressCustomer" cssClass="error"></form:errors></span>
+									path="diaChiGiaoHang" cssClass="error"></form:errors></span>
 						</div>
 					</div>
 					<div class="form-group">
@@ -89,11 +90,12 @@
 
 
 					<div class="form-group">
-						<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3">PT thanh toán</label>
+						<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Phương
+							thức thanh toán</label>
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							<select class="form-control form-control-lg fs13" name="idPT" aria-invalid="false">
-								<c:forEach var="pm" items="${getAllPaymentMethod}">
-									<option value="${pm.id}" selected>${pm.method}</option>
+								<c:forEach var="pttt" items="${layTatCaPhuongThucThanhToan}">
+									<option value="${pttt.id }" selected>${pttt.phuongThuc }</option>
 								</c:forEach>
 							</select>
 						</div>
