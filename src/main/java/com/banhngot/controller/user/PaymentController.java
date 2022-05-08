@@ -101,7 +101,7 @@ public class PaymentController {
 			for (ProductCart cake : cart) {	
 				noiDung+="Bánh: "+cake.getProduct().getName()+" "
 						 +" . "+"Đơn giá: "+format.format(cake.getProduct().getPrice())+" "+" Số lượng: "+cake.getSoLuong()+" \n";
-				orderDetailService.addAllOrderDetail(cake.getProduct().getId(), nguoiNhan.getId(), cake.getSoLuong());
+				orderDetailService.addAllOrderDetail( nguoiNhan.getId(),cake.getProduct().getId(), cake.getSoLuong());
 				Product capNhatSoLuong=cake.getProduct();
 				int soLuong=0;
 				soLuong= cake.getProduct().getQuantity()-cake.getSoLuong();
@@ -114,7 +114,7 @@ public class PaymentController {
 					"- Email: "+nguoiNhan.getEmail()+"\n"+
 					"- Địa chỉ nhận: "+nguoiNhan.getAddressCustomer()+"\n";
 			
-			guiMailChoKhachHang(nguoiNhan.getEmail(), noiDung, format.format((Double) session.getAttribute("tongtien")),thongTinNguoiNhan);
+			//guiMailChoKhachHang(nguoiNhan.getEmail(), noiDung, format.format((Double) session.getAttribute("tongtien")),thongTinNguoiNhan);
 			cart.removeAll(cart);
 			session.setAttribute("cart", cart);
 			return "user/xacnhan";
@@ -132,14 +132,14 @@ public class PaymentController {
 			Session session = Session.getDefaultInstance(properties, null);
 			session.setDebug(true);
 			MimeMessage message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("HoangTheLongxm40@gmail.com"));
+			message.setFrom(new InternetAddress("ledikhang2609@gmail.com"));
 			message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
-			message.setContent("Cảm ơn bạn đã đặt mua điện thoại tại QMobile. \n" + "Sản phẩm bạn mua gồm: \n" + noiDung
+			message.setContent("Cảm ơn bạn đã đặt mua hàng. \n" + "Sản phẩm bạn mua gồm: \n" + noiDung
 					+ "Tổng tiền: " + tongTien + "\n" + "Thông tin người nhận:\n" + thongTinNguoiNhan
 					+ "Xin chào và hẹn gặp lại\n", "text/plain; charset=UTF-8");
-			message.setSubject("QMobile");
+			message.setSubject("Hóa đơn thanh toán");
 			Transport transport = session.getTransport("smtp");
-			transport.connect("smtp.gmail.com", "HoangTheLongxm40@gmail.com", "Dkm0983382780");
+			transport.connect("smtp.gmail.com",465, "dikhang4study@gmail.com", "mphuzexonfmfawni");
 			transport.sendMessage(message, message.getAllRecipients());
 		} catch (AddressException e) {
 			// TODO Auto-generated catch block

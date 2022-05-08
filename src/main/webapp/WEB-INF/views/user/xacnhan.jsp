@@ -15,7 +15,7 @@
 					<h2>Cám ơn bạn đã mua sản phẩm tại shop của chúng tôi!</h2>
 					<hr>
 					<h3>Click vào đây để tiếp tục mua hàng 
-					<a href="${pageContext.request.contextPath}/dienthoai/danhsach"><button
+					<a href="${pageContext.request.contextPath}/banhngot/danhsach"><button
 								class="btn btn-outline-warning text-uppercase mt-2 fs14" style="color: black">Mua hàng</button></a>
 					</h3>
 				</div>

@@ -53,7 +53,7 @@
 								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 mt-2"
 									style="margin-top: 10%; font-size: 20px">
 									<div>
-										<b>Điện thoại ${ds.product.name}</b>
+										<b> ${ds.product.name}</b>
 									</div>
 								</div>
 							</div>
@@ -123,7 +123,7 @@
 										hàng</button></a>
 						</c:if>
 							<c:if test="${tenDangNhap==null && tongtien > 0}">
-								<a href="${pageContext.request.contextPath }/user/showFormNguoiNhan"
+								<a href="${pageContext.request.contextPath }/user/cart"
 									onclick="return confirm('Bạn phải đăng nhập mới đặt hàng được!');"><button
 										style="width: 100%; background: #ff8533; color: #fff;" class="btn btn-success fs14">Đặt
 										hàng</button></a>
