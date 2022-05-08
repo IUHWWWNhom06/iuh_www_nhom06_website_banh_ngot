@@ -27,7 +27,7 @@ import org.hibernate.annotations.Nationalized;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "ORDER")
+@Table(name = "HOADON")
 public class Order implements Serializable {
 	/**
 	 * 

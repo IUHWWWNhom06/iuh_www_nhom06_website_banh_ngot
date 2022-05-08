@@ -48,6 +48,12 @@ public class PaymentMethod implements Serializable{
 		this.id = id;
 		this.method = method;
 	}
+	
+
+	public PaymentMethod() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public String toString() {

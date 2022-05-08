@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ORDERDETAIL")
+@Table(name = "CHITIETHOADON")
 @IdClass(ProductOrder_PK.class)
 public class OrderDetail implements Serializable{
 

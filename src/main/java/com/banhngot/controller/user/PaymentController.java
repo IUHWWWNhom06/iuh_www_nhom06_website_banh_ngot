@@ -100,7 +100,7 @@ public class PaymentController {
 			String noiDung="";
 			for (ProductCart cake : cart) {	
 				noiDung+="Bánh: "+cake.getProduct().getName()+" "
-						+ ", màu: " +" . "+"Đơn giá: "+format.format(cake.getProduct().getPrice())+" "+" Số lượng: "+cake.getSoLuong()+" \n";
+						 +" . "+"Đơn giá: "+format.format(cake.getProduct().getPrice())+" "+" Số lượng: "+cake.getSoLuong()+" \n";
 				orderDetailService.addAllOrderDetail(cake.getProduct().getId(), nguoiNhan.getId(), cake.getSoLuong());
 				Product capNhatSoLuong=cake.getProduct();
 				int soLuong=0;
