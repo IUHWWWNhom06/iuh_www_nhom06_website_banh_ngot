@@ -24,10 +24,10 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Transactional
 	@Override
-	public void saveProduct(Product dt) {
+	public void saveProduct(Product product) {
 		// TODO Auto-generated method stub
 		Session currentSession = sessionFactory.getCurrentSession();
-		currentSession.saveOrUpdate(dt);
+		currentSession.saveOrUpdate(product);
 	}
 
 	@Transactional
@@ -35,8 +35,8 @@ public class ProductDAOImpl implements ProductDAO {
 	public void deleteProduct(int id) {
 		// TODO Auto-generated method stub
 		Session currentSession = sessionFactory.getCurrentSession();
-		Product dt = currentSession.get(Product.class, id);
-		currentSession.delete(dt);
+		Product product = currentSession.get(Product.class, id);
+		currentSession.delete(product);
 	}
 
 	@Transactional
@@ -44,8 +44,8 @@ public class ProductDAOImpl implements ProductDAO {
 	public Product getProduct(int id) {
 		// TODO Auto-generated method stub
 		Session currentSession = sessionFactory.getCurrentSession();
-		Product dt = currentSession.get(Product.class, id);
-		return dt;
+		Product product = currentSession.get(Product.class, id);
+		return product;
 	}
 
 	@Transactional
@@ -54,8 +54,8 @@ public class ProductDAOImpl implements ProductDAO {
 		// TODO Auto-generated method stub
 		Session currentSession = sessionFactory.getCurrentSession();
 		Query<Product> theQuery = currentSession.createQuery("from Product", Product.class);
-		List<Product> dts = theQuery.getResultList();
-		return dts;
+		List<Product> products = theQuery.getResultList();
+		return products;
 	}
 
 
@@ -64,21 +64,21 @@ public class ProductDAOImpl implements ProductDAO {
 		// TODO Auto-generated method stub
 		int position = 0;
 
-		List<Product> dienThoais = new ArrayList<Product>();
+		List<Product> products = new ArrayList<Product>();
 
 		while (list.size() > position) {
-			dienThoais.add(list.get(position));
+			products.add(list.get(position));
 			position++;
 		}
 
-		return dienThoais;
+		return products;
 	}
 
 	@Transactional
 	@Override
 	public List<Product> getListProductCoSapXep(String sortName,String searchName) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		List<Product> dts = new ArrayList<Product>();
+		List<Product> products = new ArrayList<Product>();
 		String sql = null;
 		switch (sortName) {
 		case "gia_asc":
@@ -113,7 +113,7 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<Product> getListProductSearch(String searchName) {
 		System.out.println(searchName);
 		Session currentSession = sessionFactory.getCurrentSession();
-		List<Product> dts = new ArrayList<Product>();
+		List<Product> products = new ArrayList<Product>();
 		String sql = null;
 		if (searchName != null && searchName.trim().length() > 0) {
 			String theName = "N'%" + searchName + "%'";

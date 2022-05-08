@@ -5,7 +5,7 @@ import java.util.List;
 import com.banhngot.entity.Product;
 
 public interface ProductDAO {
-	public void saveProduct(Product dt);
+	public void saveProduct(Product product);
 	public void deleteProduct(int id);
 	public Product getProduct(int id);
 	public List<Product> getListProduct();

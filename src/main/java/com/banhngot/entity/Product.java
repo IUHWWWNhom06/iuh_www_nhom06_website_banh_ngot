@@ -79,10 +79,6 @@ public class Product implements Serializable{
 	private TypeProduct danhMuc;
 	
 	
-	@OneToMany(mappedBy = "dienThoai", fetch = FetchType.LAZY)
-	@JsonIgnore
-	private List<ChiTietHoaDon> danhSachSanPhamHoaDon;
-	
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "HINHANH", joinColumns = @JoinColumn(name = "id"))
 	@JsonIgnore
@@ -93,8 +89,7 @@ public class Product implements Serializable{
 	}
 
 	public Product(Integer id, String name, float price, float discount, int quantity, String description,
-			String ingredient, int expiry, String anhURL, TypeProduct danhMuc,
-			List<ChiTietHoaDon> danhSachSanPhamHoaDon, List<String> hinhAnh) {
+			String ingredient, int expiry, String anhURL, TypeProduct danhMuc, List<String> hinhAnh) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -106,7 +101,6 @@ public class Product implements Serializable{
 		this.expiry = expiry;
 		this.anhURL = anhURL;
 		this.danhMuc = danhMuc;
-		this.danhSachSanPhamHoaDon = danhSachSanPhamHoaDon;
 		this.hinhAnh = hinhAnh;
 	}
 
@@ -188,14 +182,6 @@ public class Product implements Serializable{
 
 	public void setDanhMuc(TypeProduct danhMuc) {
 		this.danhMuc = danhMuc;
-	}
-
-	public List<ChiTietHoaDon> getDanhSachSanPhamHoaDon() {
-		return danhSachSanPhamHoaDon;
-	}
-
-	public void setDanhSachSanPhamHoaDon(List<ChiTietHoaDon> danhSachSanPhamHoaDon) {
-		this.danhSachSanPhamHoaDon = danhSachSanPhamHoaDon;
 	}
 
 	public List<String> getHinhAnh() {

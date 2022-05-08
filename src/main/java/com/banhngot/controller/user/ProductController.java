@@ -69,11 +69,11 @@ public class ProductController {
 
 	@GetMapping("/search")
 	public String searchProduct(Model model, @RequestParam(required = false) String searchName,  @RequestParam(value = "page", defaultValue = "1") int page) {
-		List<Product> dts = productService.getListProductSearch(searchName);
-		if (dts.size()>0) {
+		List<Product> products = productService.getListProductSearch(searchName);
+		if (products.size()>0) {
 			model.addAttribute("search",searchName);
 			model.addAttribute("page", page);
-			model.addAttribute("products", productService.getListProduct(dts));
+			model.addAttribute("products", productService.getListProduct(products));
 			return "user/listProduct";
 		}else {
 			return "user/notfoundproduct";

@@ -43,8 +43,5 @@
 	<decorator name="user-showformnguoinhan" page="user1.jsp">
 		<pattern>/user/showFormNguoiNhan</pattern>
 	</decorator>
-	<decorator name="user-thanhtoan" page="user1.jsp">
-		<pattern>/user/thanhtoan</pattern>
-	</decorator>
 
 </decorators>

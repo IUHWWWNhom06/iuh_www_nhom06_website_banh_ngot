@@ -64,36 +64,8 @@ public class DangKyController {
 				nguoiDung.setMatKhau(passwordEncoder.encode(nguoiDung.getMatKhau()));
 				nguoiDung.setRoles(Arrays.asList(roleService.findRoleByName(role)));
 				nguoiDungService.saveNguoiDung(nguoiDung);
-				guiMailChoKhachHang(nguoiDung.getEmail());
 				return "user/dangkythanhcong";
 			}
-		}
-	}
-	public void guiMailChoKhachHang(String email) {
-		try {
-			Properties properties = System.getProperties();
-			properties.put("mail.smtp.host", "smtp.gmail.com");
-			properties.put("mail.smtp.port", "465");
-			properties.put("mail.smtp.auth", "true");
-			properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-			properties.put("mail.smtp.socketFactory.port", "465");
-			Session session = Session.getDefaultInstance(properties, null);
-			session.setDebug(true);
-			MimeMessage message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("HoangTheLongxm40@gmail.com"));
-			message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
-			message.setContent("Cám ơn bạn đã đăng ký tài khoản. \n"+
-			"Đăng nhập tại đây: http://localhost:8080/WebBanDienThoai/user/formDangNhap", "text/plain; charset=UTF-8");
-			message.setSubject("QMobile");
-			Transport transport = session.getTransport("smtp");
-			transport.connect("smtp.gmail.com", "HoangTheLongxm40@gmail.com", "Dkm0983382780");
-			transport.sendMessage(message, message.getAllRecipients());
-		} catch (AddressException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 }
