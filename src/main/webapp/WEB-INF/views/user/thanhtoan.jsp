@@ -37,7 +37,7 @@
 				</tr>
 			</table>
 		</div>
-
+		<h4 style="text-align: center; color: red">*Bánh sẽ được giao nhanh nhất có thể</h4>
 		<div class="row">
 			<div class="thongtinkhachhang">
 				<div style="text-align: center;">
