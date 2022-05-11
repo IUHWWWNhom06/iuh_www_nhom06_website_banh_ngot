@@ -13,9 +13,6 @@
 		<pattern>/user/formTimTenDangNhap</pattern>
 	</decorator>
 	
-	<decorator name="guiemaildoimk" page="user1.jsp">
-		<pattern>/user/guiEmail</pattern>
-	</decorator>
 	
 	<decorator name="formCapNhatMatKhau" page="user1.jsp">
 		<pattern>/user/formCapNhatMatKhau</pattern>

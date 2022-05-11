@@ -114,39 +114,10 @@ public class PaymentController {
 					"- Email: "+nguoiNhan.getEmail()+"\n"+
 					"- Địa chỉ nhận: "+nguoiNhan.getAddressCustomer()+"\n";
 			
-			//guiMailChoKhachHang(nguoiNhan.getEmail(), noiDung, format.format((Double) session.getAttribute("tongtien")),thongTinNguoiNhan);
 			cart.removeAll(cart);
 			session.setAttribute("cart", cart);
 			return "user/xacnhan";
 		}
 	}
 
-	public void guiMailChoKhachHang(String email, String noiDung, String tongTien, String thongTinNguoiNhan) {
-		try {
-			Properties properties = System.getProperties();
-			properties.put("mail.smtp.host", "smtp.gmail.com");
-			properties.put("mail.smtp.port", "465");
-			properties.put("mail.smtp.auth", "true");
-			properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-			properties.put("mail.smtp.socketFactory.port", "465");
-			Session session = Session.getDefaultInstance(properties, null);
-			session.setDebug(true);
-			MimeMessage message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("ledikhang2609@gmail.com"));
-			message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
-			message.setContent("Cảm ơn bạn đã đặt mua hàng. \n" + "Sản phẩm bạn mua gồm: \n" + noiDung
-					+ "Tổng tiền: " + tongTien + "\n" + "Thông tin người nhận:\n" + thongTinNguoiNhan
-					+ "Xin chào và hẹn gặp lại\n", "text/plain; charset=UTF-8");
-			message.setSubject("Hóa đơn thanh toán");
-			Transport transport = session.getTransport("smtp");
-			transport.connect("smtp.gmail.com",465, "dikhang4study@gmail.com", "mphuzexonfmfawni");
-			transport.sendMessage(message, message.getAllRecipients());
-		} catch (AddressException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 }

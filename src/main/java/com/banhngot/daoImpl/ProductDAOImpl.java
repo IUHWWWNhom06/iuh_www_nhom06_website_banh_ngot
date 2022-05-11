@@ -64,14 +64,14 @@ public class ProductDAOImpl implements ProductDAO {
 		// TODO Auto-generated method stub
 		int position = 0;
 
-		List<Product> dienThoais = new ArrayList<Product>();
+		List<Product> products = new ArrayList<Product>();
 
 		while (list.size() > position) {
-			dienThoais.add(list.get(position));
+			products.add(list.get(position));
 			position++;
 		}
 
-		return dienThoais;
+		return products;
 	}
 
 	@Transactional

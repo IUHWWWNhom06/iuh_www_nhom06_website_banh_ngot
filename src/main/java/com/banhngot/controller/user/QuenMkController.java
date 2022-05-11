@@ -61,42 +61,4 @@ public class QuenMkController {
 		return "user/formCapNhatMatKhau";
 	}
 
-	@GetMapping("/guiEmail")
-	public String guiEmail(@RequestParam("email") String email, HttpSession sesion,Model model) {
-		try {
-			NguoiDung nguoiDung = nguoiDungService.getEmail(email);
-			Properties properties = System.getProperties();
-			properties.put("mail.smtp.host", "smtp.gmail.com");
-			properties.put("mail.smtp.port", "465");
-			properties.put("mail.smtp.auth", "true");
-			properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-			properties.put("mail.smtp.socketFactory.port", "465");
-			Session session = Session.getDefaultInstance(properties, null);
-			session.setDebug(true);
-			MimeMessage message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("HoangTheLongxm40@gmail.com"));
-			message.setRecipient(Message.RecipientType.TO, new InternetAddress(nguoiDung.getEmail()));
-			message.setContent(
-					"Click vào link này để lấy lại mật khẩu" + " "
-							+ "http://localhost:8080/WebBanDienThoai/user/formCapNhatMatKhau",
-					"text/plain; charset=UTF-8");
-			message.setSubject("QMobile");
-			Transport transport = session.getTransport("smtp");
-			transport.connect("smtp.gmail.com", "HoangTheLongxm40@gmail.com", "Dkm0983382780");
-			transport.sendMessage(message, message.getAllRecipients());
-			sesion.setAttribute("email", email);
-			return "user/guiemail";
-		} catch (AddressException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		model.addAttribute("error","Không tìm thấy email!");
-		return "user/formtimtendangnhap";
-	}
 }
