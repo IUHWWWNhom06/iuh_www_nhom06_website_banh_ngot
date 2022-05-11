@@ -43,21 +43,16 @@ public class Product implements Serializable{
 	
 	@Nationalized
 	@Size(min = 1, message = "Không được bỏ trống")
-	@Pattern(regexp = "[A-Za-z0-9 \\p{L}+]{1,}",message = "Không chứa kí tự đặc biệt")
 	private String name;
 	
 	
-	@Min(value = 1, message = "Phải lớn hơn 0")
 	private float price;
 
 	@NotNull(message = "Không được bỏ trống")
-	@Min(value = 0, message = "Phải lớn hơn 0")	
 	private float discount;
 
 	@NotNull(message = "Không được bỏ trống")
-	@Min(value = 1, message = "Phải lớn hơn 0")	
 	private int quantity;
-	
 	
 	@Nationalized
 	@Size(min = 1, message = "Không được bỏ trống")
@@ -68,7 +63,6 @@ public class Product implements Serializable{
 	private String ingredient;
 	
 	@NotNull(message = "Không được bỏ trống")
-	@Min(value = 1, message = "Phải lớn hơn 0")	
 	private int expiry;
 	
 	@Nationalized
