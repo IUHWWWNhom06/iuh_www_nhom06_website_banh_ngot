@@ -76,11 +76,6 @@ public class Product implements Serializable{
 	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<OrderDetail> danhSachSanPhamHoaDon;
-	
-	@ElementCollection(fetch = FetchType.EAGER)
-	@CollectionTable(name = "HINHANH", joinColumns = @JoinColumn(name = "id"))
-	@JsonIgnore
-	private List<String> hinhAnh;
 
 	public Product() {
 		super();
@@ -88,7 +83,7 @@ public class Product implements Serializable{
 
 	public Product(Integer id, String name, float price, float discount, int quantity, String description,
 			String ingredient, int expiry, String anhURL, TypeProduct danhMuc,
-			List<OrderDetail> danhSachSanPhamHoaDon, List<String> hinhAnh) {
+			List<OrderDetail> danhSachSanPhamHoaDon) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -101,7 +96,7 @@ public class Product implements Serializable{
 		this.anhURL = anhURL;
 		this.danhMuc = danhMuc;
 		this.danhSachSanPhamHoaDon = danhSachSanPhamHoaDon;
-		this.hinhAnh = hinhAnh;
+		
 	}
 
 	public Integer getId() {
@@ -192,13 +187,6 @@ public class Product implements Serializable{
 		this.danhSachSanPhamHoaDon = danhSachSanPhamHoaDon;
 	}
 
-	public List<String> getHinhAnh() {
-		return hinhAnh;
-	}
-
-	public void setHinhAnh(List<String> hinhAnh) {
-		this.hinhAnh = hinhAnh;
-	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

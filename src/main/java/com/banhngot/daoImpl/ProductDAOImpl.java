@@ -82,24 +82,24 @@ public class ProductDAOImpl implements ProductDAO {
 		String sql = null;
 		switch (sortName) {
 		case "gia_asc":
-			sql = "select dt.* from Product dt "
+			sql = "select bn.* from Product bn "
 					+ "where (LOWER(name) like N'%"+searchName+"%')"
 					+ "order by (price*(100-discount))/100  asc";
 			dts = currentSession.createNativeQuery(sql, Product.class).getResultList();
 			break;
 		case "gia_desc":
-			sql = "select dt.* from Product dt "
+			sql = "select bn.* from Product bn "
 					+ "order by (price*(100-discount))/100  desc";
 			dts = currentSession.createNativeQuery(sql, Product.class).getResultList();
 			break;
 		case "giamgia":
-			sql = "select dt.* from Product dt "
+			sql = "select bn.* from Product bn "
 					+ "where discount > 0 "
 					+ "order by (price*(100-discount))/100  asc";
 			dts = currentSession.createNativeQuery(sql, Product.class).getResultList();
 			break;
 		default:
-			sql = "select dt.* from Product dt "
+			sql = "select bn.* from Product bn "
 					+ "where (LOWER(name) like N'%"+searchName+"%') "
 					+ "order by (price*(100-discount))/100  desc";
 			dts = currentSession.createNativeQuery(sql, Product.class).getResultList();
@@ -117,7 +117,7 @@ public class ProductDAOImpl implements ProductDAO {
 		String sql = null;
 		if (searchName != null && searchName.trim().length() > 0) {
 			String theName = "N'%" + searchName + "%'";
-			sql = "select dt.* from Product dt \r\n"
+			sql = "select bn.* from Product bn \r\n"
 					+ "where LOWER(name) like(" + theName + ")";
 		} else {
 			sql = "select * from Product";
