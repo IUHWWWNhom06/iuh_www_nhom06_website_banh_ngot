@@ -63,7 +63,7 @@
 								<fmt:formatNumber type="number" pattern="#,###,###.##₫"
 									value="${ds.product.price}" />
 							</div>
-							<div style="text-align: center; margin-top: 10px">												
+							<div style="text-align: center; margin-top: 10px; display: flex">												
 								<c:if test="${ds.soLuong >= 2}">
 									<a href="${pageContext.request.contextPath }/user/giamsoluong/${ds.product.id}">
 										<button class="btn fs16" style="background: #ff8533; color: #fff;"><b>-</b></button>
@@ -75,7 +75,7 @@
 									</a>
 								</c:if>	
 								&nbsp; 
-									<span class="fs14">${ds.soLuong} </span>
+									<span class="fs20">${ds.soLuong} </span>
 								&nbsp;
 								<c:if test="${ds.soLuong >= ds.product.quantity}">
 									<a onclick="return confirm('Không đủ số lượng trong kho!');">

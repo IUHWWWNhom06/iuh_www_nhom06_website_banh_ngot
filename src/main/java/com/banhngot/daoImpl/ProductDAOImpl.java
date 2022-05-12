@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.banhngot.dao.ProductDAO;
 import com.banhngot.entity.Product;
+import com.banhngot.entity.TypeProduct;
 
 @Repository
 public class ProductDAOImpl implements ProductDAO {
@@ -130,8 +131,7 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<Product> getListProductLienQuan(String tenDM) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		List<Product> list=currentSession.createNativeQuery("select top 4 dt.* from Product dt join TypeProduct dm on dt.id_DanhMuc=dm.id\r\n"
-				+ " where dm.tenDanhMuc = '"+tenDM+"'",Product.class).getResultList();
+				+ " where dm.tenDanhMuc = N'"+tenDM+"'",Product.class).getResultList();
 		return list;
 	}
-
 }

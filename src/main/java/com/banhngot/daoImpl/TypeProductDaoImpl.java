@@ -44,19 +44,6 @@ public class TypeProductDaoImpl implements TypeProductDao {
 		return danhMucs;
 	}
 	@Override
-	public void saveDanhMuc(TypeProduct danhMuc) {
-		// TODO Auto-generated method stub
-		Session currentSession = sessionFactory.getCurrentSession();
-		currentSession.saveOrUpdate(danhMuc);
-	}
-	@Override
-	public void deleteDanhMuc(int id) {
-		// TODO Auto-generated method stub
-		Session currentSession = sessionFactory.getCurrentSession();
-		TypeProduct danhMuc=currentSession.get(TypeProduct.class, id);
-		currentSession.delete(danhMuc);
-	}
-	@Override
 	public TypeProduct getDanhMuc(int id) {
 		// TODO Auto-generated method stub
 		Session currentSession = sessionFactory.getCurrentSession();

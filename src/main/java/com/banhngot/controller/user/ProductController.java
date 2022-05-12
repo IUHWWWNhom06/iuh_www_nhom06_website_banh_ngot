@@ -62,6 +62,7 @@ public class ProductController {
 	}
 	@RequestMapping(value = "/danhmuc/{danhMucId}", method = RequestMethod.GET)
 	public String getProductTheoDanhMuc(Model model,@PathVariable(value = "danhMucId")int danhMucId,HttpSession session) {
+		System.out.println(danhMucId +"dong 65");
 		session.setAttribute("bns", productService.getListProductLienQuan(danhMucService.getDanhMuc(danhMucId).getTenDanhMuc()));
 		session.setAttribute("iddanhmuc", danhMucId);
 		return "redirect:/banhngot/danhmuc";

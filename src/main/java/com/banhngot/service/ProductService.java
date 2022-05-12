@@ -12,5 +12,6 @@ public interface ProductService {
 	public List<Product> getListProduct(List<Product> list);
 	public List<Product> getListProductCoSapXep(String sort,String searchName);
 	public List<Product> getListProductSearch(String searchName);
-	public List<Product> getListProductLienQuan(String tenDM);
+	public List<Product> getListProductLienQuan(String tenDM);	
+	
 }

@@ -32,6 +32,10 @@
 	font-size: 14px !important;
 }
 
+.fs20{
+	font-size: 20px !important;
+}
+
 .menu a {
 	color: rgb(233, 227, 227);
 	font-size: 20px;
@@ -123,15 +127,6 @@ h5 {
 	color: red;
 }
 
-#danhgiaiPhone a {
-	font-size: 17px;
-	text-decoration: none;
-}
-
-#xemThemCauHinhChiTiet label a:hover {
-	color: blue;
-	background-color: white;
-}
 
 #gioHang {
 	box-shadow: 3px 3px 10px black;
@@ -182,14 +177,6 @@ h5 {
 	padding-left: 3px;
 	padding-right: 3px;
 	border-radius: 5px;
-}
-
-.tragop {
-	padding-top: 10px;
-	padding-left: auto;
-	padding-right: auto;
-	padding-bottom: 10px;
-	float: left;
 }
 
 .dt {
@@ -281,17 +268,4 @@ h5 {
 	border: 1px solid transparent;
 	padding-left: 20px;
 	height: 48px;
-}
-.quenmatkhau{
-	text-align: center;
-	font-size: 18px;
-	margin-top: 20px;
-}
-.quenmatkhau a{
-	text-decoration: none;
-	color: black;
-}
-.quenmatkhau a:hover{
-	text-decoration: none;
-	color: black;
 }
