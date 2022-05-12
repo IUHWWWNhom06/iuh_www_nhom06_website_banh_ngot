@@ -53,7 +53,7 @@
 						<div class="area">
 							<h2>404</h2>
 							<span>Không tìm thấy trang!</span> <a
-								href="${pageContext.request.contextPath}/product/danhsach">
+								href="${pageContext.request.contextPath}/banhngot/danhsach">
 								Trở về trang chủ</a>
 						</div>
 					</div>
@@ -69,7 +69,7 @@
 						<div class="area">
 						<h2>Exception</h2>
 							<span>${error}</span> <a
-								href="${pageContext.request.contextPath}/product/danhsach">
+								href="${pageContext.request.contextPath}/banhngott/danhsach">
 								Trở về trang chủ</a>
 						</div>
 					</div>

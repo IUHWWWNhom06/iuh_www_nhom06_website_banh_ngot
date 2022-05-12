@@ -31,20 +31,6 @@ public class TypeProductServiceImpl implements TypeProductService {
 
 	@Transactional
 	@Override
-	public void saveDanhMuc(TypeProduct danhMuc) {
-		// TODO Auto-generated method stub
-		danhMucDao.saveDanhMuc(danhMuc);
-	}
-
-	@Transactional
-	@Override
-	public void deleteDanhMuc(int id) {
-		// TODO Auto-generated method stub
-		danhMucDao.deleteDanhMuc(id);
-	}
-
-	@Transactional
-	@Override
 	public TypeProduct getDanhMuc(int id) {
 		// TODO Auto-generated method stub
 		return danhMucDao.getDanhMuc(id);
